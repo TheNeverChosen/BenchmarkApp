@@ -1,11 +1,11 @@
-package com.example.app;
+package com.example.myappbench;
 
 import java.math.BigInteger;
 
 public class PiBenchGameJava {
     static final int L = 10;
 
-    public static void run(int n) {
+    public static void pidigitsjv(int n) {
         int j = 0;
 
         PiDigitSpigotJava digits = new PiDigitSpigotJava();

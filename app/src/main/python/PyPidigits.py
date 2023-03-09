@@ -1,3 +1,5 @@
+# Sem processos de I/O
+
 def extract_Digit(nth):
     global tmp1, tmp2, acc, den, num
     tmp1 = num * nth
@@ -48,5 +50,10 @@ def pidigits(value):
         d=extract_Digit(3)
         if d!=extract_Digit(4):
             continue
+        print(chr(48+d), end="")
         i+=1
+        if i%10==0:
+            print("\t:%d" % (i))
         eliminate_Digit(d)
+
+    return 0
