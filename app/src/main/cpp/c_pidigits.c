@@ -1,11 +1,7 @@
 #include <jni.h>
 
-//
-// Created by ricardofilho on 06/02/2023.
-//
-
-#include <stdio.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 
 JNIEXPORT jint JNICALL

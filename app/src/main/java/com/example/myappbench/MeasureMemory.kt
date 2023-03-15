@@ -2,7 +2,7 @@ package com.example.myappbench
 
 class MeasureMemory {
     class MeasureMemory: Runnable{
-        private val mb = 1;
+        private val mb = 1024*1024;
         private val arrayMemory = ArrayList<Long>();
 
         override fun run() {

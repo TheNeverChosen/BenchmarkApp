@@ -22,8 +22,14 @@ add_library( # Sets the name of the library.
              SHARED
 
              # Provides a relative path to your source file(s).
-            cpp_pidigits.cpp
-            c_pidigits.c)
+        cpp_pidigits.cpp
+        cpp_binarytree.cpp
+        cpp_fannkuch.cpp
+        cpp_nbody.cpp
+        c_binarytree.c
+        c_pidigits.c
+        c_fannkuch.c
+        c_nbody.c)
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
