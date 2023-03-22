@@ -1,12 +1,17 @@
-package com.example.myappbench
+package com.example.myappbench.algorithm.kotlin
 
-class TreeBenchGameKt {
+import kotlin.Throws
+import java.lang.Exception
+
+object TreeBenchGameKt {
+    @JvmStatic
     @Throws(Exception::class)
     fun run(x: Int) {
         val minDepth = 4
         val maxDepth = Math.max(minDepth + 2, x)
         val stretchDepth = maxDepth + 1
-        var check = TreeNode.create(stretchDepth).check()
+        var check = TreeNode.create(stretchDepth)
+            .check()
         println("stretch tree of depth " + (maxDepth + 1) + "\t check: " + check)
         val longLivedTree = TreeNode.create(maxDepth)
         var depth = minDepth
@@ -14,7 +19,8 @@ class TreeBenchGameKt {
             val iterations = 1 shl maxDepth - depth + minDepth
             check = 0
             for (i in 1..iterations) {
-                check += TreeNode.create(depth).check()
+                check += TreeNode.create(depth)
+                    .check()
             }
             println("$iterations\t trees of depth $depth\t check: $check")
             depth += 2

@@ -1,4 +1,4 @@
-package com.example.benchmarkapp.algorithm.code.java;
+package com.example.myappbench.algorithm.java;
 
 import java.math.BigInteger;
 

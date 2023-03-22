@@ -1,4 +1,4 @@
-package com.example.myappbench;
+package com.example.myappbench.algorithm.java;
 
 public final class BodyBenchGameJava {
     public static void run(Integer x) {

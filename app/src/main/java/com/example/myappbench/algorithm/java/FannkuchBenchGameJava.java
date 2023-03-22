@@ -1,4 +1,4 @@
-package com.example.myappbench;
+package com.example.myappbench.algorithm.java;
 
 import java.util.concurrent.atomic.AtomicInteger;
 

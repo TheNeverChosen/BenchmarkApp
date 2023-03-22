@@ -1,22 +1,18 @@
-package com.example.benchmarkapp.measure.energy;
+package com.example.myappbench.measuring.energy;
 
 import android.content.Intent;
 import android.content.IntentFilter;
 
-public class EnergyMeasure{
-    private final static IntentFilter intentFilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
-    public long time; //ms
-    public double voltage, current; //millivolts, micro-amperes
+import com.example.myappbench.measuring.Measure;
+
+public class EnergyMeasure extends Measure{
+    private final double voltage, current; //millivolts, micro-amperes
 
     public EnergyMeasure(long time, double voltage, double current){
+        super(time);
         this.time = time;
         this.voltage = voltage;
-        this.current = current;
-    }
-
-    //time in ms (1ms = 1/1000s)
-    public long getTime(){
-        return time;
+        this.current = Math.abs(current);
     }
 
     //voltage in millivolts
@@ -26,7 +22,7 @@ public class EnergyMeasure{
 
     //voltage in Volts
     public double getVoltageVolt(){
-        return voltage / 1000.0;
+        return voltage / 1e3;
     }
 
     //current in micro-amperes
@@ -36,7 +32,7 @@ public class EnergyMeasure{
 
     //current in Amperes
     public double getCurrentAmpere(){
-        return current / 1000000.0;
+        return current / 1e6;
     }
 
     //Power in Watt * 10^9
@@ -46,7 +42,7 @@ public class EnergyMeasure{
 
     //Power in Watt
     public double getPowerWatt(){
-        return getPower()/1000000000.0;
+        return getPower()/1e9;
     }
 
     @Override

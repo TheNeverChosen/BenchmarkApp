@@ -1,4 +1,4 @@
-package com.example.myappbench;
+package com.example.myappbench.algorithm.java;
 
 public class TreeBenchGameJava {
     public static void run(Integer x) throws Exception {
