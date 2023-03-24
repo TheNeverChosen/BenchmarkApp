@@ -3,6 +3,8 @@ package com.example.myappbench.benchmarking;
 import android.content.Context;
 import android.util.Log;
 
+import com.example.myappbench.algorithm.c.CAlgorithms;
+import com.example.myappbench.algorithm.cpp.CppAlgorithms;
 import com.example.myappbench.algorithm.java.BodyBenchGameJava;
 import com.example.myappbench.algorithm.java.FannkuchBenchGameJava;
 import com.example.myappbench.algorithm.java.PiBenchGameJava;
@@ -103,10 +105,38 @@ public class Benchmark{
     }
 
     private BenchmarkData execC(Algorithm algo, Object[] args){
-        return null;
+        startNewMonitoring();
+        switch(algo){
+            case PI_DIGITS:
+                CAlgorithms.cPidigits((Integer) args[0]); break;
+            case FANNKUCH:
+                CAlgorithms.cFannkuch((Integer) args[0]); break;
+            case TREE:
+                CAlgorithms.cBinaryTrees((Integer) args[0]); break;
+            case BODY:
+                CAlgorithms.cNbody((Integer) args[0]); break;
+            default: break;
+        }
+        terminateMonitoring();
+
+        return new BenchmarkData(timeStart, timeEnd, memThread.getMemoryVals(), batThread.getEnergyVals());
     }
-    private BenchmarkData execCPlus(Algorithm algo, Object[] args){
-        return null;
+    private BenchmarkData execCpp(Algorithm algo, Object[] args){
+        startNewMonitoring();
+        switch(algo){
+            case PI_DIGITS:
+                CppAlgorithms.cppPidigits((Integer) args[0]); break;
+            case FANNKUCH:
+                CppAlgorithms.cppFannkuch((Integer) args[0]); break;
+            case TREE:
+                CppAlgorithms.cppBinaryTrees((Integer) args[0]); break;
+            case BODY:
+                CppAlgorithms.cppNbody((Integer) args[0]); break;
+            default: break;
+        }
+        terminateMonitoring();
+
+        return new BenchmarkData(timeStart, timeEnd, memThread.getMemoryVals(), batThread.getEnergyVals());
     }
     private BenchmarkData execRust(Algorithm algo, Object[] args){
         return null;
@@ -120,7 +150,7 @@ public class Benchmark{
             case JAVA: return execJava(algo, args);
             case KOTLIN: return execKotlin(algo, args);
             case C: return execC(algo, args);
-            case C_PLUS: return execCPlus(algo, args);
+            case C_PLUS: return execCpp(algo, args);
             case RUST: return execRust(algo, args);
             case PYTHON: return execPython(algo, args);
             default: return null;

@@ -4,16 +4,9 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myappbench.benchmarking.Benchmark
-import java.util.Objects
 
 
 class MainActivity : AppCompatActivity() {
-
-    companion object {
-        init {
-            System.loadLibrary("myappbench")
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,17 +67,5 @@ class MainActivity : AppCompatActivity() {
 //        // Kotlin End
 
     }
-
-    external fun cppidigits(num: Int)
-    external fun cpidigits(num: Int)
-
-    external fun cppFannkuch(num: Int)
-    external fun cFannkuch(num: Int)
-
-    external fun cppBinaryTrees(num: Int)
-    external fun cBinaryTrees(num: Int)
-
-    external fun cppNbody(num: Int)
-    external fun cNbody(num: Int)
 
 }

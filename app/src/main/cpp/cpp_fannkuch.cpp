@@ -7,6 +7,8 @@
 
 extern "C"
 JNIEXPORT jint JNICALL
-Java_com_example_myappbench_MainActivity_cppFannkuch(JNIEnv *env, jobject thiz, jint num) {
+Java_com_example_myappbench_algorithm_cpp_CppAlgorithms_cppFannkuch(JNIEnv *env, jclass thiz,
+                                                                  jint var1) {
     // TODO: implement cppFannkuch()
+    return 0;
 }
