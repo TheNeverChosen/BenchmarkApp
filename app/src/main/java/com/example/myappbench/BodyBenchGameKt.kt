@@ -1,6 +1,6 @@
 package com.example.myappbench
 
-object BodyBenchGameKt {
+class BodyBenchGameKt {
     fun run(x: Int) {
         val bodies = NBodySystem()
         System.out.printf("%.9f\n", bodies.energy())
@@ -66,9 +66,12 @@ object BodyBenchGameKt {
                 val offset = BODY_SIZE * i
                 for (j in i + 1 until BODY_COUNT) {
                     val joffset = BODY_SIZE * j
-                    val dx = bodies[offset + x] - bodies[joffset + x]
-                    val dy = bodies[offset + y] - bodies[joffset + y]
-                    val dz = bodies[offset + z] - bodies[joffset + z]
+                    val dx =
+                        bodies[offset + x] - bodies[joffset + x]
+                    val dy =
+                        bodies[offset + y] - bodies[joffset + y]
+                    val dz =
+                        bodies[offset + z] - bodies[joffset + z]
                     val dSquared = dx * dx + dy * dy + dz * dz
                     val distance = Math.sqrt(dSquared)
                     val mag = dt / (dSquared * distance)
@@ -76,7 +79,8 @@ object BodyBenchGameKt {
                     bodies[offset + vx] -= dx * jmass * mag
                     bodies[offset + vy] -= dy * jmass * mag
                     bodies[offset + vz] -= dz * jmass * mag
-                    val imass = bodies[offset + mass]
+                    val imass =
+                        bodies[offset + mass]
                     bodies[joffset + vx] += dx * imass * mag
                     bodies[joffset + vy] += dy * imass * mag
                     bodies[joffset + vz] += dz * imass * mag
@@ -106,9 +110,12 @@ object BodyBenchGameKt {
                 e += 0.5 * imass * (ivx * ivx + ivy * ivy + ivz * ivz)
                 for (j in i + 1 until BODY_COUNT) {
                     val joffset = BODY_SIZE * j
-                    val ix = bodies[offset + x]
-                    val iy = bodies[offset + y]
-                    val iz = bodies[offset + z]
+                    val ix =
+                        bodies[offset + x]
+                    val iy =
+                        bodies[offset + y]
+                    val iz =
+                        bodies[offset + z]
                     dx = ix - bodies[joffset + x]
                     dy = iy - bodies[joffset + y]
                     dz = iz - bodies[joffset + z]
