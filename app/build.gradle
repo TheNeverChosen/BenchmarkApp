@@ -5,6 +5,7 @@ plugins {
     id 'org.mozilla.rust-android-gradle.rust-android'
 }
 
+
 android {
     namespace 'com.example.myappbench'
     compileSdk 33
@@ -31,7 +32,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             cmake {
-                cppFlags ''
+                cppFlags '-std=c++17'
             }
         }
     }
@@ -51,14 +52,14 @@ android {
     }
     externalNativeBuild {
         cmake {
-            path file('src/main/cpp/CMakeLists.txt')
+            path file('CMakeLists.txt')
             version '3.18.1'
         }
     }
 }
 
 cargo {
-    module  = "../rust"       // Or whatever directory contains your Cargo.toml
+    module  = "src/main/rust"       // Or whatever directory contains your Cargo.toml
     libname = "rust"          // Or whatever matches Cargo.toml's [package] name.
     targets = ["arm", "x86"]  // See bellow for a longer list of options
 }
