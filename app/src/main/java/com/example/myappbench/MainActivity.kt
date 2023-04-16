@@ -7,6 +7,9 @@ import com.chaquo.python.Python
 import com.chaquo.python.android.AndroidPlatform
 import com.example.myappbench.FannkuchBenchGameJava.main
 import com.example.myappbench.MeasureMemory.MeasureMemory
+import binarytree.Binarytree
+import fannkuch.Redux
+import nbody.Nbody
 
 
 class MainActivity : AppCompatActivity() {
@@ -89,18 +92,25 @@ class MainActivity : AppCompatActivity() {
 
         // C++ End
 
+        // Golang
+
+        val startGo = System.currentTimeMillis();
+        //Nbody();
+        Redux();
+        //Binarytree();
+        val endGo = System.currentTimeMillis();
+        val finalGo = endGo - startGo;
+        Log.i("Go Fannkuch", finalGo.toString());
+
     }
 
-    external fun cppidigits(num: Int)
-    external fun cpidigits(num: Int)
+    //external fun cppidigits(num: Int)
+    //external fun cpidigits(num: Int)
 
     external fun cppFannkuch(num: Int)
     external fun cFannkuch(num: Int)
 
     external fun cppBinaryTrees(num: Int)
     external fun cBinaryTrees(num: Int)
-
-    external fun cppNbody(num: Int)
-    external fun cNbody(num: Int)
 
 }

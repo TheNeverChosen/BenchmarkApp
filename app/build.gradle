@@ -2,7 +2,6 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'com.chaquo.python'
-    id 'org.mozilla.rust-android-gradle.rust-android'
 }
 
 android {
@@ -31,7 +30,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             cmake {
-                cppFlags ''
+                cppFlags "-std=c++17 -mavx -mavx2"
             }
         }
     }
@@ -55,12 +54,7 @@ android {
             version '3.18.1'
         }
     }
-}
-
-cargo {
-    module  = "../rust"       // Or whatever directory contains your Cargo.toml
-    libname = "rust"          // Or whatever matches Cargo.toml's [package] name.
-    targets = ["arm", "x86"]  // See bellow for a longer list of options
+    ndkVersion '25.1.8937393'
 }
 
 dependencies {
@@ -68,6 +62,9 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation files('C:\\Users\\nogue\\Documents\\MyAppBench\\app\\src\\main\\golang\\binarytree\\binarytree.aar')
+    implementation files('C:\\Users\\nogue\\Documents\\MyAppBench\\app\\src\\main\\golang\\fannkuch\\fannkuch.aar')
+    implementation files('C:\\Users\\nogue\\Documents\\MyAppBench\\app\\src\\main\\golang\\nbody\\nbody.aar')
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
