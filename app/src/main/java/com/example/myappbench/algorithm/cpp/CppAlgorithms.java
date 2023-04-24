@@ -5,7 +5,7 @@ public class CppAlgorithms{
         System.loadLibrary("bench_cpp");
     }
 
-    public static native void cppPidigits(int var1);
+//    public static native void cppPidigits(int var1);
 
     public static native void cppFannkuch(int var1);
 

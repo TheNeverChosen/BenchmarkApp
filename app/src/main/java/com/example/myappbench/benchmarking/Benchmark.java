@@ -125,13 +125,14 @@ public class Benchmark{
         startNewMonitoring();
         switch(algo){
             case PI_DIGITS:
-                CppAlgorithms.cppPidigits((Integer) args[0]); break;
+//                CppAlgorithms.cppPidigits((Integer) args[0]);
+                break;
             case FANNKUCH:
                 CppAlgorithms.cppFannkuch((Integer) args[0]); break;
             case TREE:
                 CppAlgorithms.cppBinaryTrees((Integer) args[0]); break;
             case BODY:
-                CppAlgorithms.cppNbody((Integer) args[0]); break;
+                /*CppAlgorithms.cppNbody((Integer) args[0]);*/ break;
             default: break;
         }
         terminateMonitoring();

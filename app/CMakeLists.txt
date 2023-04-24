@@ -35,7 +35,8 @@ add_library( # Sets the name of the library.
         ${DIR_SRC_C}/c_binarytree.c
         ${DIR_SRC_C}/c_pidigits.c
         ${DIR_SRC_C}/c_fannkuch.c
-        ${DIR_SRC_C}/c_nbody.c)
+        ${DIR_SRC_C}/c_nbody.c
+        ${DIR_SRC_C}/c_fasta.c)
 
 set(DIR_SRC_CPP src/main/cpp)
 add_library( # Sets the name of the library.
@@ -71,4 +72,4 @@ target_link_libraries( # Specifies the target library.
 
         # Links the target library to the log library
         # included in the NDK.
-        log gmpxx)
+        log gmpxx gmp)
