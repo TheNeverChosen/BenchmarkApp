@@ -4,7 +4,7 @@
 
 # Sets the minimum version of CMake required to build the native library.
 
-cmake_minimum_required(VERSION 3.18.1)
+cmake_minimum_required(VERSION 3.19)
 set(CMAKE_CXX_STANDARD 17)
 
 # Declares and names the project.
@@ -17,10 +17,9 @@ project("myappbench")
 # Gradle automatically packages shared libraries with your APK.
 
 # GMP
-set(JNI_PATH src/main/jni)
+set(JNI_LIBS_PATH src/main/jni)
 set(GMP_WITH_CPLUSPLUS yes)
-add_subdirectory(${JNI_PATH}/gmp)
-include(${JNI_PATH}/gmp/CMakeLists.txt)
+include(${JNI_LIBS_PATH}/gmp/CMakeLists.txt)
 #===================================================================
 
 # Benchmark Codes
@@ -71,4 +70,4 @@ target_link_libraries( # Specifies the target library.
 
         # Links the target library to the log library
         # included in the NDK.
-        log gmpxx)
+        log gmpxx gmp)

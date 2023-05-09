@@ -5,7 +5,6 @@ plugins {
     id 'org.mozilla.rust-android-gradle.rust-android'
 }
 
-
 android {
     namespace 'com.example.myappbench'
     compileSdk 33
@@ -18,7 +17,7 @@ android {
         versionName "1.0"
 
         ndk {
-            abiFilters "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
+            abiFilters=project.property("ABI_FILTERS").toString().split(';')
         }
 
         python {
@@ -32,6 +31,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
             cmake {
+                version "3.26.3"
                 cppFlags '-std=c++17'
             }
         }
@@ -53,22 +53,24 @@ android {
     externalNativeBuild {
         cmake {
             path file('CMakeLists.txt')
-            version '3.18.1'
         }
     }
+    ndkVersion '25.2.9519653'
+    buildToolsVersion '34.0.0 rc3'
+
 }
 
 cargo {
     module  = "src/main/rust"       // Or whatever directory contains your Cargo.toml
     libname = "rust"          // Or whatever matches Cargo.toml's [package] name.
-    targets = ["arm", "x86"]  // See bellow for a longer list of options
+    targets = ["arm", "arm64", "x86", "x86_64"]  // See bellow for a longer list of options
 }
 
 dependencies {
-    implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    implementation 'com.google.android.material:material:1.8.0'
+
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
