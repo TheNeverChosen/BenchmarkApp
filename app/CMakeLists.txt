@@ -3,12 +3,12 @@
 # documentation: https://d.android.com/studio/projects/add-native-code.html
 
 # Sets the minimum version of CMake required to build the native library.
-
 cmake_minimum_required(VERSION 3.19)
+
+# Minimum sersion of CPP to build the native library
 set(CMAKE_CXX_STANDARD 17)
 
 # Declares and names the project.
-
 project("myappbench")
 
 # Creates and names a library, sets it as either STATIC
@@ -20,6 +20,8 @@ project("myappbench")
 set(JNI_LIBS_PATH src/main/jni)
 set(GMP_WITH_CPLUSPLUS yes)
 include(${JNI_LIBS_PATH}/gmp/CMakeLists.txt)
+include(${JNI_LIBS_PATH}/boost/CMakeLists.txt)
+include(${JNI_LIBS_PATH}/apr/CMakeLists.txt)
 #===================================================================
 
 # Benchmark Codes
@@ -31,7 +33,7 @@ add_library( # Sets the name of the library.
         SHARED
 
         # Provides a relative path to your source file(s).
-        ${DIR_SRC_C}/c_binarytree.c
+        ${DIR_SRC_C}/c_binarytrees.c
         ${DIR_SRC_C}/c_pidigits.c
         ${DIR_SRC_C}/c_fannkuch.c
         ${DIR_SRC_C}/c_nbody.c)
@@ -45,7 +47,7 @@ add_library( # Sets the name of the library.
 
         # Provides a relative path to your source file(s).
         ${DIR_SRC_CPP}/cpp_pidigits.cpp
-        ${DIR_SRC_CPP}/cpp_binarytree.cpp
+        ${DIR_SRC_CPP}/cpp_binarytrees.cpp
         ${DIR_SRC_CPP}/cpp_fannkuch.cpp
         ${DIR_SRC_CPP}/cpp_nbody.cpp)
 #===================================================================
@@ -61,7 +63,7 @@ target_link_libraries( # Specifies the target library.
 
         # Links the target library to the log library
         # included in the NDK.
-        log gmp)
+        log gmp apr)
 
 target_link_libraries( # Specifies the target library.
         bench_cpp
@@ -70,4 +72,4 @@ target_link_libraries( # Specifies the target library.
 
         # Links the target library to the log library
         # included in the NDK.
-        log gmpxx gmp)
+        log gmpxx gmp boost_container)

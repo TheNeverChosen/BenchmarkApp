@@ -5,11 +5,11 @@ public class CAlgorithms{
         System.loadLibrary("bench_c");
     }
 
-    public static native void cPidigits(int var1);
+    public static native void cPiDigitsRun(int num);
 
-    public static native void cFannkuch(int var1);
+    public static native void cFannkuchRun(int num);
 
-    public static native void cBinaryTrees(int var1);
+    public static native void cBinaryTreesRun(int num);
 
-    public static native void cNbody(int var1);
+    public static native void cNBodyRun(int num);
 }

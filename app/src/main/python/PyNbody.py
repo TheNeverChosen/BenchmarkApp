@@ -1,3 +1,16 @@
+# n-body Python 3 program
+# https://benchmarksgame-team.pages.debian.net/benchmarksgame/program/nbody-python3-1.html
+
+# The Computer Language Benchmarks Game
+# https://salsa.debian.org/benchmarksgame-team/benchmarksgame/
+#
+# originally by Kevin Carson
+# modified by Tupteq, Fredrik Johansson, and Daniel Nanz
+# modified by Maciej Fijalkowski
+# 2to3
+
+import sys
+
 def combinations(l):
     result = []
     for x in range(len(l) - 1):
@@ -96,7 +109,7 @@ def offset_momentum(ref, bodies=SYSTEM, px=0.0, py=0.0, pz=0.0):
     v[1] = py / m
     v[2] = pz / m
 
-def nbody(n, ref='sun'):
+def run(n, ref='sun'):
     offset_momentum(BODIES[ref])
     report_energy()
     advance(0.01, n)

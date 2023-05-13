@@ -5,11 +5,11 @@ public class CppAlgorithms{
         System.loadLibrary("bench_cpp");
     }
 
-    public static native void cppPidigits(int var1);
+    public static native void cppPiDigitsRun(int num);
 
-    public static native void cppFannkuch(int var1);
+    public static native void cppFannkuchRun(int num);
 
-    public static native void cppBinaryTrees(int var1);
+    public static native void cppBinaryTreesRun(int num);
 
-    public static native void cppNbody(int var1);
+    public static native void cppNBodyRun(int num);
 }

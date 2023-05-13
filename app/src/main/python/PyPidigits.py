@@ -1,4 +1,15 @@
-# Sem processos de I/O
+# pidigits Python 3 #5 program
+# https://benchmarksgame-team.pages.debian.net/benchmarksgame/program/pidigits-python3-5.html
+
+# The Computer Language Benchmarks Game
+# https://salsa.debian.org/benchmarksgame-team/benchmarksgame/
+#
+# Translated from Mr Ledrug's C program by Jeremy Zerfas.
+# Transliterated from GMP to gmpy2 by Isaac Gouy
+
+
+from sys import argv
+from gmpy2 import xmpz
 
 def extract_Digit(nth):
     global tmp1, tmp2, acc, den, num
@@ -25,16 +36,16 @@ def next_Term(k):
     num = num * k
 
 
-def pidigits(value):
+def run(num):
     global tmp1, tmp2, acc, den, num
-    n= value
+    n=num
 
-    tmp1 = 0
-    tmp2 = 0
+    tmp1 = xmpz(0)
+    tmp2 = xmpz(0)
 
-    acc = 0
-    den = 1
-    num = 1
+    acc = xmpz(0)
+    den = xmpz(1)
+    num = xmpz(1)
 
 
     i=0
@@ -50,10 +61,10 @@ def pidigits(value):
         d=extract_Digit(3)
         if d!=extract_Digit(4):
             continue
+
+
         print(chr(48+d), end="")
         i+=1
         if i%10==0:
             print("\t:%d" % (i))
         eliminate_Digit(d)
-
-    return 0

@@ -5,9 +5,10 @@ import android.util.Log;
 
 import com.example.myappbench.algorithm.c.CAlgorithms;
 import com.example.myappbench.algorithm.cpp.CppAlgorithms;
-import com.example.myappbench.algorithm.java.BodyBenchGameJava;
-import com.example.myappbench.algorithm.java.FannkuchBenchGameJava;
-import com.example.myappbench.algorithm.java.PiBenchGameJava;
+import com.example.myappbench.algorithm.java.JavaBinaryTrees;
+import com.example.myappbench.algorithm.java.JavaFannkuch;
+import com.example.myappbench.algorithm.java.JavaNBody;
+import com.example.myappbench.algorithm.java.JavaPiDigits;
 import com.example.myappbench.algorithm.kotlin.BodyBenchGameKt;
 import com.example.myappbench.algorithm.kotlin.FannkuchBenchGameKt;
 import com.example.myappbench.algorithm.kotlin.PiBenchGameKt;
@@ -59,20 +60,20 @@ public class Benchmark{
         startNewMonitoring();
         switch(algo){
             case PI_DIGITS:
-                PiBenchGameJava.pidigitsjv((Integer) args[0]);
+                JavaPiDigits.run((Integer) args[0]);
                 break;
             case FANNKUCH:
-                FannkuchBenchGameJava.run((Integer) args[0]);
+                JavaFannkuch.run((Integer) args[0]);
                 break;
             case TREE:
                 try{
-                    TreeBenchGameKt.run((Integer) args[0]);
+                    JavaBinaryTrees.run((Integer) args[0]);
                 } catch(Exception e){
                     Log.e("TREE ERROR", e.getMessage());
                 }
                 break;
             case BODY:
-                BodyBenchGameJava.run((Integer) args[0]);
+                JavaNBody.run((Integer) args[0]);
                 break;
             default: break;
         }
@@ -108,13 +109,13 @@ public class Benchmark{
         startNewMonitoring();
         switch(algo){
             case PI_DIGITS:
-                CAlgorithms.cPidigits((Integer) args[0]); break;
+                CAlgorithms.cPiDigitsRun((Integer) args[0]); break;
             case FANNKUCH:
-                CAlgorithms.cFannkuch((Integer) args[0]); break;
+                CAlgorithms.cFannkuchRun((Integer) args[0]); break;
             case TREE:
-                CAlgorithms.cBinaryTrees((Integer) args[0]); break;
+                CAlgorithms.cBinaryTreesRun((Integer) args[0]); break;
             case BODY:
-                CAlgorithms.cNbody((Integer) args[0]); break;
+                CAlgorithms.cNBodyRun((Integer) args[0]); break;
             default: break;
         }
         terminateMonitoring();
@@ -125,13 +126,13 @@ public class Benchmark{
         startNewMonitoring();
         switch(algo){
             case PI_DIGITS:
-                CppAlgorithms.cppPidigits((Integer) args[0]); break;
+                CppAlgorithms.cppPiDigitsRun((Integer) args[0]); break;
             case FANNKUCH:
-                CppAlgorithms.cppFannkuch((Integer) args[0]); break;
+                CppAlgorithms.cppFannkuchRun((Integer) args[0]); break;
             case TREE:
-                CppAlgorithms.cppBinaryTrees((Integer) args[0]); break;
+                CppAlgorithms.cppBinaryTreesRun((Integer) args[0]); break;
             case BODY:
-                CppAlgorithms.cppNbody((Integer) args[0]); break;
+                CppAlgorithms.cppNBodyRun((Integer) args[0]); break;
             default: break;
         }
         terminateMonitoring();

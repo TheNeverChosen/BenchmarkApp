@@ -1,13 +1,14 @@
 #include <jni.h>
 
+// n-body C++ g++ #9 program
+// https://benchmarksgame-team.pages.debian.net/benchmarksgame/program/nbody-gpp-9.html
+
 /* The Computer Language Benchmarks Game
    https://salsa.debian.org/benchmarksgame-team/benchmarksgame/
 
    contributed by Martin Jambrek
    based off the Java #2 program contributed by Mark C. Lewis and modified slightly by Chad Whipkey
 */
-
-//https://benchmarksgame-team.pages.debian.net/benchmarksgame/program/nbody-gpp-9.html
 
 #include <cmath>
 #include <cstdio>
@@ -28,24 +29,24 @@ constexpr void static_for(F&& f)
 }
 
 struct alignas(32) Body {
-double x, y, z, pad0;
-double vx, vy, vz, pad1;
-double mass;
+    double x, y, z, pad0;
+    double vx, vy, vz, pad1;
+    double mass;
 
-constexpr Body(double x, double y, double z,
-               double vx, double vy, double vz,
-               double mass)
-: x(x)
-, y(y)
-, z(z)
-, pad0()
-, vx(vx)
-, vy(vy)
-, vz(vz)
-, pad1()
-, mass(mass)
-{
-}
+    constexpr Body(double x, double y, double z,
+                   double vx, double vy, double vz,
+                   double mass)
+            : x(x)
+            , y(y)
+            , z(z)
+            , pad0()
+            , vx(vx)
+            , vy(vy)
+            , vz(vz)
+            , pad1()
+            , mass(mass)
+    {
+    }
 };
 
 static constexpr size_t N_BODIES = 5;
@@ -163,7 +164,10 @@ constexpr double energy(const System& bodies)
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_example_myappbench_algorithm_cpp_CppAlgorithms_cppNbody(JNIEnv *env, jclass thiz, jint n) {
+Java_com_example_myappbench_algorithm_cpp_CppAlgorithms_cppNBodyRun(JNIEnv *env, jclass thiz, jint num)
+{
+    const auto n = num;
+
     System system = {
             sun,
             jupiter,

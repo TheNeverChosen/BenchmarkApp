@@ -1,5 +1,16 @@
 #include <jni.h>
 
+// n-body C gcc #6 program
+// https://benchmarksgame-team.pages.debian.net/benchmarksgame/program/nbody-gcc-6.html
+
+/* The Computer Language Benchmarks Game
+ * https://salsa.debian.org/benchmarksgame-team/benchmarksgame/
+ *
+ * contributed by Christoph Bauer
+ * modified by Danny Angelo Carminati Grein
+ *
+ */
+
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -25,8 +36,9 @@ void advance(int nbodies, struct planet * bodies, double dt)
             double dx = b->x - b2->x;
             double dy = b->y - b2->y;
             double dz = b->z - b2->z;
-            double distance = sqrt(dx * dx + dy * dy + dz * dz);
-            double mag = dt / (distance * distance * distance);
+            double distanced = dx * dx + dy * dy + dz * dz;
+            double distance = sqrt(distanced);
+            double mag = dt / (distanced * distance);
             b->vx -= dx * b2->mass * mag;
             b->vy -= dy * b2->mass * mag;
             b->vz -= dz * b2->mass * mag;
@@ -121,9 +133,9 @@ struct planet bodies[NBODIES] = {
         }
 };
 
-
 JNIEXPORT void JNICALL
-Java_com_example_myappbench_algorithm_c_CAlgorithms_cNbody(JNIEnv *env, jclass thiz, jint num) {
+Java_com_example_myappbench_algorithm_c_CAlgorithms_cNBodyRun(JNIEnv *env, jclass thiz, jint num)
+{
     int n = num;
     int i;
 

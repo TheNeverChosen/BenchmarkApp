@@ -1,5 +1,18 @@
 #include <jni.h>
 
+// fannkuch-redux C++ g++ #5 program
+// https://benchmarksgame-team.pages.debian.net/benchmarksgame/program/fannkuchredux-gpp-5.html
+
+// The Computer Language Benchmarks Game
+// https://salsa.debian.org/benchmarksgame-team/benchmarksgame/
+//
+// Contributed by Dave Compton
+// Based on "fannkuch-redux C gcc #5", contributed by Jeremy Zerfas
+// which in turn was based on the Ada program by Jonathan Parker and
+// Georg Bauhaus which in turn was based on code by Dave Fladebo,
+// Eckehard Berns, Heiner Marxen, Hongwei Xi, and The Anh Tran and
+// also the Java program by Oleg Mazurov.
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -127,7 +140,8 @@ inline int64_t Permutation::countFlips() const
 
 extern "C"
 JNIEXPORT void JNICALL
-Java_com_example_myappbench_algorithm_cpp_CppAlgorithms_cppFannkuch(JNIEnv *env, jclass thiz, jint num) {
+Java_com_example_myappbench_algorithm_cpp_CppAlgorithms_cppFannkuchRun(JNIEnv *env, jclass thiz, jint num)
+{
     const auto n = num;
 
     // Compute some factorials for later use.

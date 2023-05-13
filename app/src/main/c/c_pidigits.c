@@ -1,5 +1,19 @@
 #include <jni.h>
 
+// pidigits C gcc #2 program
+// https://benchmarksgame-team.pages.debian.net/benchmarksgame/program/pidigits-gcc-2.html
+
+/* The Computer Language Benchmarks Game
+ * https://salsa.debian.org/benchmarksgame-team/benchmarksgame/
+ *
+ * Contributed by Michael Ganss
+ * derived from PHP version that was
+ * contributed by Oleksii Prudkyi
+ * port from pidigits.lua-5.lua (Mike Pall, Wim Couwenberg)
+ * modified by Craig Russell
+ *
+ * Original C version by Mr Ledrug
+*/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -8,7 +22,8 @@
 mpz_t n1, n2, d, u, v, w;
 
 JNIEXPORT void JNICALL
-Java_com_example_myappbench_algorithm_c_CAlgorithms_cPidigits(JNIEnv *env, jclass thiz, jint num) {
+Java_com_example_myappbench_algorithm_c_CAlgorithms_cPiDigitsRun(JNIEnv *env, jclass thiz, jint num)
+{
     int k = 1, k2, i = 0;
     int n = num;
 
