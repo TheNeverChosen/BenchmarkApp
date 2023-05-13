@@ -36,7 +36,8 @@ add_library( # Sets the name of the library.
         ${DIR_SRC_C}/c_binarytrees.c
         ${DIR_SRC_C}/c_pidigits.c
         ${DIR_SRC_C}/c_fannkuch.c
-        ${DIR_SRC_C}/c_nbody.c)
+        ${DIR_SRC_C}/c_nbody.c
+        ${DIR_SRC_C}/c_fasta.c)
 
 set(DIR_SRC_CPP src/main/cpp)
 add_library( # Sets the name of the library.
@@ -49,7 +50,8 @@ add_library( # Sets the name of the library.
         ${DIR_SRC_CPP}/cpp_pidigits.cpp
         ${DIR_SRC_CPP}/cpp_binarytrees.cpp
         ${DIR_SRC_CPP}/cpp_fannkuch.cpp
-        ${DIR_SRC_CPP}/cpp_nbody.cpp)
+        ${DIR_SRC_CPP}/cpp_nbody.cpp
+        ${DIR_SRC_CPP}/cpp_fasta.cpp)
 #===================================================================
 
 # Specifies libraries CMake should link to your target library. You

@@ -7,6 +7,7 @@ import com.example.myappbench.algorithm.c.CAlgorithms;
 import com.example.myappbench.algorithm.cpp.CppAlgorithms;
 import com.example.myappbench.algorithm.java.JavaBinaryTrees;
 import com.example.myappbench.algorithm.java.JavaFannkuch;
+import com.example.myappbench.algorithm.java.JavaFasta;
 import com.example.myappbench.algorithm.java.JavaNBody;
 import com.example.myappbench.algorithm.java.JavaPiDigits;
 import com.example.myappbench.algorithm.kotlin.BodyBenchGameKt;
@@ -25,13 +26,15 @@ public class Benchmark{
         C,
         C_PLUS,
         RUST,
-        PYTHON
+        PYTHON,
+        GO
     }
     public enum Algorithm{
         PI_DIGITS,
         FANNKUCH,
         TREE,
-        BODY
+        BODY,
+        FASTA
     }
 
     private final Context context;
@@ -75,6 +78,9 @@ public class Benchmark{
             case BODY:
                 JavaNBody.run((Integer) args[0]);
                 break;
+            case FASTA:
+                JavaFasta.run((Integer) args[0]);
+                break;
             default: break;
         }
         terminateMonitoring();
@@ -116,6 +122,8 @@ public class Benchmark{
                 CAlgorithms.cBinaryTreesRun((Integer) args[0]); break;
             case BODY:
                 CAlgorithms.cNBodyRun((Integer) args[0]); break;
+            case FASTA:
+                CAlgorithms.cFastaRun((Integer) args[0]); break;
             default: break;
         }
         terminateMonitoring();
@@ -133,6 +141,8 @@ public class Benchmark{
                 CppAlgorithms.cppBinaryTreesRun((Integer) args[0]); break;
             case BODY:
                 CppAlgorithms.cppNBodyRun((Integer) args[0]); break;
+            case FASTA:
+                CppAlgorithms.cppFastaRun((Integer) args[0]); break;
             default: break;
         }
         terminateMonitoring();
