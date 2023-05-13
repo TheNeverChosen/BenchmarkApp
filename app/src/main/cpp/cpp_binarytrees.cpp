@@ -89,7 +89,7 @@ int run_parallel(unsigned depth, int iterations, unsigned int workers = std::thr
 constexpr auto MIN_DEPTH     = 4;
 
 extern "C"
-JNIEXPORT void JNICALL
+JNIEXPORT int JNICALL
 Java_com_example_myappbench_algorithm_cpp_CppAlgorithms_cppBinaryTreesRun(JNIEnv *env, jclass thiz, jint num)
 {
     const int max_depth     = std::max(MIN_DEPTH + 2, num);
@@ -117,4 +117,6 @@ Java_com_example_myappbench_algorithm_cpp_CppAlgorithms_cppBinaryTreesRun(JNIEnv
 
     std::cout << "long lived tree of depth " << max_depth << "\t "
               << "check: " << (long_lived_tree->check()) << "\n";
+
+    return 0;
 }

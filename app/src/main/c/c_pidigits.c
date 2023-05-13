@@ -21,7 +21,7 @@
 
 mpz_t n1, n2, d, u, v, w;
 
-JNIEXPORT void JNICALL
+JNIEXPORT int JNICALL
 Java_com_example_myappbench_algorithm_c_CAlgorithms_cPiDigitsRun(JNIEnv *env, jclass thiz, jint num)
 {
     int k = 1, k2, i = 0;
@@ -74,4 +74,5 @@ Java_com_example_myappbench_algorithm_c_CAlgorithms_cPiDigitsRun(JNIEnv *env, jc
 
     if (i % 10 != 0)
         printf("%*s\t:%d\n", 10 - n % 10, "", n);
+    return 0;
 }

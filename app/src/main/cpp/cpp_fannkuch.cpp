@@ -139,7 +139,7 @@ inline int64_t Permutation::countFlips() const
 }
 
 extern "C"
-JNIEXPORT void JNICALL
+JNIEXPORT int JNICALL
 Java_com_example_myappbench_algorithm_cpp_CppAlgorithms_cppFannkuchRun(JNIEnv *env, jclass thiz, jint num)
 {
     const auto n = num;
@@ -200,4 +200,6 @@ Java_com_example_myappbench_algorithm_cpp_CppAlgorithms_cppFannkuchRun(JNIEnv *e
     // Output the results to stdout.
     cout << checksum << endl;
     cout << "Pfannkuchen(" << n << ") = " << maxFlips << endl;
+
+    return 0;
 }

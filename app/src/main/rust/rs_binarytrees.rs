@@ -1,3 +1,6 @@
+// binary-trees Rust #5 program
+// https://benchmarksgame-team.pages.debian.net/benchmarksgame/program/binarytrees-rust-5.html
+
 // The Computer Language Benchmarks Game
 // http://benchmarksgame.alioth.debian.org/
 //

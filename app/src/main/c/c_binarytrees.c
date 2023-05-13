@@ -54,7 +54,7 @@ static intnative_t compute_Tree_Checksum(const tree_node * const root_Node){
 }
 
 
-JNIEXPORT void JNICALL
+JNIEXPORT int JNICALL
 Java_com_example_myappbench_algorithm_c_CAlgorithms_cBinaryTreesRun(JNIEnv *env, jclass thiz, jint num) {
     // Set minimum_Tree_Depth to 4 and maximum_Tree_Depth to the maximum of what
     // was specified as the argument to the program and minimum_Tree_Depth+2.
@@ -165,4 +165,5 @@ Java_com_example_myappbench_algorithm_c_CAlgorithms_cBinaryTreesRun(JNIEnv *env,
     apr_pool_destroy(memory_Pool);
 
     apr_terminate();
+    return 0;
 }

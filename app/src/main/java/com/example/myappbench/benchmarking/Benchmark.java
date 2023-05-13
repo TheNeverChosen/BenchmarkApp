@@ -10,14 +10,14 @@ import com.example.myappbench.algorithm.java.JavaFannkuch;
 import com.example.myappbench.algorithm.java.JavaFasta;
 import com.example.myappbench.algorithm.java.JavaNBody;
 import com.example.myappbench.algorithm.java.JavaPiDigits;
-import com.example.myappbench.algorithm.kotlin.BodyBenchGameKt;
-import com.example.myappbench.algorithm.kotlin.FannkuchBenchGameKt;
-import com.example.myappbench.algorithm.kotlin.PiBenchGameKt;
-import com.example.myappbench.algorithm.kotlin.TreeBenchGameKt;
+import com.example.myappbench.algorithm.kotlin.KtBinaryTrees;
+import com.example.myappbench.algorithm.kotlin.KtFannkuch;
+import com.example.myappbench.algorithm.kotlin.KtFasta;
+import com.example.myappbench.algorithm.kotlin.KtNBody;
+import com.example.myappbench.algorithm.kotlin.KtPiDigits;
 import com.example.myappbench.measuring.MeasureFactory;
 import com.example.myappbench.measuring.energy.BatteryMonitorThread;
 import com.example.myappbench.measuring.memory.MemoryMonitorThread;
-
 
 public class Benchmark{
     public enum Language{
@@ -63,11 +63,9 @@ public class Benchmark{
         startNewMonitoring();
         switch(algo){
             case PI_DIGITS:
-                JavaPiDigits.run((Integer) args[0]);
-                break;
+                JavaPiDigits.run((Integer) args[0]); break;
             case FANNKUCH:
-                JavaFannkuch.run((Integer) args[0]);
-                break;
+                JavaFannkuch.run((Integer) args[0]); break;
             case TREE:
                 try{
                     JavaBinaryTrees.run((Integer) args[0]);
@@ -76,11 +74,9 @@ public class Benchmark{
                 }
                 break;
             case BODY:
-                JavaNBody.run((Integer) args[0]);
-                break;
+                JavaNBody.run((Integer) args[0]); break;
             case FASTA:
-                JavaFasta.run((Integer) args[0]);
-                break;
+                JavaFasta.run((Integer) args[0]); break;
             default: break;
         }
         terminateMonitoring();
@@ -92,18 +88,20 @@ public class Benchmark{
         startNewMonitoring();
         switch(algo){
             case PI_DIGITS:
-                PiBenchGameKt.run((Integer) args[0]); break;
+                KtPiDigits.run((Integer) args[0]); break;
             case FANNKUCH:
-                new FannkuchBenchGameKt().run((Integer) args[0]); break;
+                KtFannkuch.run((Integer) args[0]); break;
             case TREE:
                 try{
-                    TreeBenchGameKt.run((Integer) args[0]);
+                    KtBinaryTrees.run((Integer) args[0]);
                 } catch(Exception e){
                     Log.e("TREE ERROR", e.getMessage());
                 }
                 break;
             case BODY:
-                BodyBenchGameKt.run((Integer) args[0]); break;
+                KtNBody.run((Integer) args[0]); break;
+            case FASTA:
+                KtFasta.run((Integer) args[0]); break;
             default: break;
         }
         terminateMonitoring();

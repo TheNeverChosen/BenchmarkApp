@@ -28,7 +28,7 @@
 typedef intptr_t intnative_t;
 
 
-JNIEXPORT void JNICALL
+JNIEXPORT int JNICALL
 Java_com_example_myappbench_algorithm_c_CAlgorithms_cFannkuchRun(JNIEnv *env, jclass thiz, jint num) {
     const intnative_t n = num;
 
@@ -174,4 +174,6 @@ Java_com_example_myappbench_algorithm_c_CAlgorithms_cFannkuchRun(JNIEnv *env, jc
     // Output the results to stdout.
     printf("%jd\nPfannkuchen(%jd) = %jd\n", (intmax_t)checksum, (intmax_t)n,
            (intmax_t)maximum_Flip_Count);
+
+    return 0;
 }

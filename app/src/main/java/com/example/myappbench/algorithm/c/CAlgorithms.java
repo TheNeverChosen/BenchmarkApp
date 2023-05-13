@@ -5,9 +5,9 @@ public class CAlgorithms{
         System.loadLibrary("bench_c");
     }
 
-    public static native void cPiDigitsRun(int num);
-    public static native void cFannkuchRun(int num);
-    public static native void cBinaryTreesRun(int num);
-    public static native void cNBodyRun(int num);
-    public static native void cFastaRun(int num);
+    public static native int cPiDigitsRun(int num);
+    public static native int cFannkuchRun(int num);
+    public static native int cBinaryTreesRun(int num);
+    public static native int cNBodyRun(int num);
+    public static native int cFastaRun(int num);
 }

@@ -212,7 +212,7 @@ const char header1[] = ">ONE Homo sapiens alu\n";
 const char header2[] = ">TWO IUB ambiguity codes\n";
 const char header3[] = ">THREE Homo sapiens frequency\n";
 
-JNIEXPORT void JNICALL
+JNIEXPORT int JNICALL
 Java_com_example_myappbench_algorithm_c_CAlgorithms_cFastaRun(JNIEnv *env, jclass thiz, jint num) {
     int n=num;
 
@@ -224,4 +224,6 @@ Java_com_example_myappbench_algorithm_c_CAlgorithms_cFastaRun(JNIEnv *env, jclas
 
     write(1, header3, sizeof(header3)-1);
     random_fasta(homosapiens, homosapiens_p, n*5);
+
+    return 0;
 }

@@ -163,7 +163,7 @@ constexpr double energy(const System& bodies)
 }
 
 extern "C"
-JNIEXPORT void JNICALL
+JNIEXPORT int JNICALL
 Java_com_example_myappbench_algorithm_cpp_CppAlgorithms_cppNBodyRun(JNIEnv *env, jclass thiz, jint num)
 {
     const auto n = num;
@@ -184,4 +184,5 @@ Java_com_example_myappbench_algorithm_cpp_CppAlgorithms_cppNBodyRun(JNIEnv *env,
         advance(system, 0.01);
 
     std::printf("%.9f\n", energy(system));
+    return 0;
 }

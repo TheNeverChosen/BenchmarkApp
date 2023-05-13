@@ -1,3 +1,17 @@
+// pidigits Rust #4 program
+// https://benchmarksgame-team.pages.debian.net/benchmarksgame/program/pidigits-rust-4.html
+
+//! The Computer Language Benchmarks Game
+//! https://salsa.debian.org/benchmarksgame-team/benchmarksgame/
+//!
+//! Contributed by TeXitoi
+//! Contributed by Ryohei Machida
+//!
+//! ```cargo
+//! [dependencies]
+//! rug = { version = "1.12.0", default-features = false, features = ["integer"] }
+//! ```
+
 extern crate rug;
 
 use rug::{Assign, Integer};

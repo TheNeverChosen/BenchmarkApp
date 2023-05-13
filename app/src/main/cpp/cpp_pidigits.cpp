@@ -44,7 +44,7 @@ public:
 };
 
 extern "C"
-JNIEXPORT void JNICALL
+JNIEXPORT int JNICALL
 Java_com_example_myappbench_algorithm_cpp_CppAlgorithms_cppPiDigitsRun(JNIEnv *env, jclass thiz, jint num){
     std::ios_base::sync_with_stdio(false);
 
@@ -72,4 +72,5 @@ Java_com_example_myappbench_algorithm_cpp_CppAlgorithms_cppPiDigitsRun(JNIEnv *e
         for (; i < 10; ++i) std::cout << ' ';
         std::cout << "\t:" << n_digits << '\n';
     }
+    return 0;
 }

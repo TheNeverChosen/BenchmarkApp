@@ -133,7 +133,7 @@ struct planet bodies[NBODIES] = {
         }
 };
 
-JNIEXPORT void JNICALL
+JNIEXPORT int JNICALL
 Java_com_example_myappbench_algorithm_c_CAlgorithms_cNBodyRun(JNIEnv *env, jclass thiz, jint num)
 {
     int n = num;
@@ -144,4 +144,5 @@ Java_com_example_myappbench_algorithm_c_CAlgorithms_cNBodyRun(JNIEnv *env, jclas
     for (i = 1; i <= n; i++)
         advance(NBODIES, bodies, 0.01);
     printf ("%.9f\n", energy(NBODIES, bodies));
+    return 0;
 }

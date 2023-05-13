@@ -303,12 +303,12 @@ void make(const char* desc, int n, generator_type generator, converter_type conv
 
 
 extern "C"
-JNIEXPORT void JNICALL
+JNIEXPORT int JNICALL
 Java_com_example_myappbench_algorithm_cpp_CppAlgorithms_cppFastaRun(JNIEnv *env, jclass thiz, jint num) {
     int n = num;
     if (n <= 0) {
         std::cerr << "usage: " << "fasta" << " length\n";
-        return;
+        return 1;
     }
 
     make_cumulative(iub.begin(), iub.end());
@@ -323,4 +323,5 @@ Java_com_example_myappbench_algorithm_cpp_CppAlgorithms_cppFastaRun(JNIEnv *env,
     make("THREE Homo sapiens frequency", n * 5,
          make_random_generator(homosapiens.begin(), homosapiens.end()),
          &convert_homosapiens);
+    return 0;
 }
