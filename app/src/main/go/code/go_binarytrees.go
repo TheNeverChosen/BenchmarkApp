@@ -40,10 +40,12 @@
 
 package main
 
+import "C"
+
 import (
-   "flag"
+  //  "flag"
    "fmt"
-   "strconv"
+  //  "strconv"
    "sync"
 )
 
@@ -147,12 +149,13 @@ func Run(maxDepth int) {
    }
 }
 
-func main() {
-   n := 0
-   flag.Parse()
-   if flag.NArg() > 0 {
-      n, _ = strconv.Atoi(flag.Arg(0))
-   }
+//export GoBinaryTreesRun
+func GoBinaryTreesRun(n int) {
+  //  n := 0
+  //  flag.Parse()
+  //  if flag.NArg() > 0 {
+  //     n, _ = strconv.Atoi(flag.Arg(0))
+  //  }
 
    Run(n)
 }

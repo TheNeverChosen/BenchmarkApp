@@ -22,6 +22,7 @@ set(GMP_WITH_CPLUSPLUS yes)
 include(${JNI_LIBS_PATH}/gmp/CMakeLists.txt)
 include(${JNI_LIBS_PATH}/boost/CMakeLists.txt)
 include(${JNI_LIBS_PATH}/apr/CMakeLists.txt)
+include(${JNI_LIBS_PATH}/goalgo/CMakeLists.txt)
 #===================================================================
 
 # Benchmark Codes
@@ -52,12 +53,23 @@ add_library( # Sets the name of the library.
         ${DIR_SRC_CPP}/cpp_fannkuch.cpp
         ${DIR_SRC_CPP}/cpp_nbody.cpp
         ${DIR_SRC_CPP}/cpp_fasta.cpp)
+
+set(DIR_SRC_GO src/main/go)
+add_library( # Sets the name of the library.
+        bench_go
+
+        # Sets the library as a shared library.
+        SHARED
+
+        # Provides a relative path to your source file(s).
+        ${DIR_SRC_GO}/go.cpp)
 #===================================================================
 
 # Specifies libraries CMake should link to your target library. You
 # can link multiple libraries, such as libraries you define in this
 # build script, prebuilt third-party libraries, or system libraries.
 
+#C LIB
 target_link_libraries( # Specifies the target library.
         bench_c
 
@@ -67,11 +79,14 @@ target_link_libraries( # Specifies the target library.
         # included in the NDK.
         log gmp apr)
 
-target_link_libraries( # Specifies the target library.
+#CPP LIB
+target_link_libraries(
         bench_cpp
-
         PRIVATE
-
-        # Links the target library to the log library
-        # included in the NDK.
         log gmpxx gmp boost_container)
+
+#GO LIB
+target_link_libraries(
+        bench_go
+        PRIVATE
+        log goalgo)

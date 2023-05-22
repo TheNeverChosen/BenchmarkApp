@@ -16,16 +16,18 @@
 
 package main
 
+import "C"
+
 import (
 		"bufio"
-		"flag"
+		// "flag"
 		"fmt"
 		big "github.com/ncw/gmp"
 		"os"
-		"strconv"
+		// "strconv"
 )
 
-var n = 0
+// var n = 0
 var silent = false
 
 var (
@@ -84,14 +86,15 @@ func eliminate_digit(d int64) {
 		numer.Mul(numer, ten)
 }
 
-func init() {
-		flag.Parse()
-		if flag.NArg() > 0 {
-				n, _ = strconv.Atoi(flag.Arg(0))
-		}
-}
+// func init() {
+// 		flag.Parse()
+// 		if flag.NArg() > 0 {
+// 				n, _ = strconv.Atoi(flag.Arg(0))
+// 		}
+// }
 
-func main() {
+//export GoPiDigitsRun
+func GoPiDigitsRun(n int) {
 		w := bufio.NewWriter(os.Stdout)
 		defer w.Flush()
 		line := make([]byte, 0, 10)
