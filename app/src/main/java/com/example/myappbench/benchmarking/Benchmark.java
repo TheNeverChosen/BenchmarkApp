@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.example.myappbench.algorithm.c.CAlgorithms;
 import com.example.myappbench.algorithm.cpp.CppAlgorithms;
+import com.example.myappbench.algorithm.go.GoAlgorithms;
 import com.example.myappbench.algorithm.java.JavaBinaryTrees;
 import com.example.myappbench.algorithm.java.JavaFannkuch;
 import com.example.myappbench.algorithm.java.JavaFasta;
@@ -24,10 +25,10 @@ public class Benchmark{
         JAVA,
         KOTLIN,
         C,
-        C_PLUS,
+        CPP,
+        GO,
         RUST,
-        PYTHON,
-        GO
+        PYTHON
     }
     public enum Algorithm{
         PI_DIGITS,
@@ -147,6 +148,27 @@ public class Benchmark{
 
         return new BenchmarkData(timeStart, timeEnd, memThread.getMemoryVals(), batThread.getEnergyVals());
     }
+
+    private BenchmarkData execGo(Algorithm algo, Object[] args){
+        startNewMonitoring();
+        switch(algo){
+            case PI_DIGITS:
+                GoAlgorithms.goPiDigitsRun((Integer) args[0]); break;
+            case FANNKUCH:
+                GoAlgorithms.goFannkuchRun((Integer) args[0]); break;
+            case TREE:
+                GoAlgorithms.goBinaryTreesRun((Integer) args[0]); break;
+            case BODY:
+                GoAlgorithms.goNBodyRun((Integer) args[0]); break;
+            case FASTA:
+                GoAlgorithms.goFastaRun((Integer) args[0]); break;
+            default: break;
+        }
+        terminateMonitoring();
+
+        return new BenchmarkData(timeStart, timeEnd, memThread.getMemoryVals(), batThread.getEnergyVals());
+    }
+
     private BenchmarkData execRust(Algorithm algo, Object[] args){
         return null;
     }
@@ -159,7 +181,8 @@ public class Benchmark{
             case JAVA: return execJava(algo, args);
             case KOTLIN: return execKotlin(algo, args);
             case C: return execC(algo, args);
-            case C_PLUS: return execCpp(algo, args);
+            case CPP: return execCpp(algo, args);
+            case GO: return execGo(algo, args);
             case RUST: return execRust(algo, args);
             case PYTHON: return execPython(algo, args);
             default: return null;
