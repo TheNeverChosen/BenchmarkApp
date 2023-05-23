@@ -161,7 +161,7 @@ def random_selection(header, alphabet, n, width, seed, locks=None):
         for p in processes:
             p.join()
 
-def run(n):
+def pyFastaRun(n):
     alu = sub(r'\s+', '', """
 GGCCGGGCGCGGTGGCTCACGCCTGTAATCCCAGCACTTTGGGAGGCCGAGGCGGGCGGA
 TCACCTGAGGTCAGGAGTTCGAGACCAGCCTGGCCAACATGGTGAAACCCCGTCTCTACT

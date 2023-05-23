@@ -17,12 +17,11 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 public class JavaBinaryTrees {
-
     private static final int MIN_DEPTH = 4;
     private static final ExecutorService EXECUTOR_SERVICE =
             Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
-    public static void run(int num) throws Exception {
+    public static void jvBinaryTreesRun(int num) throws Exception {
         int n = num;
 
         final int maxDepth = n < (MIN_DEPTH + 2) ? MIN_DEPTH + 2 : n;

@@ -136,7 +136,7 @@ public final class JavaFannkuch implements Runnable
         System.out.println( chk+"\nPfannkuchen("+n+") = "+res );
     }
 
-    public static void run( int num )
+    public static void jvFannkuchRun(int num )
     {
         n = num;
         if ( n < 0 || n > 12 ) {         // 13! won't fit into int

@@ -14,7 +14,7 @@ import java.math.BigInteger;
 public class JavaPiDigits {
     static final int L = 10;
 
-    public static void run(int num) {
+    public static void jvPiDigitsRun(int num) {
         int n = num;
         int j = 0;
 

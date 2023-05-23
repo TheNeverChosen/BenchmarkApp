@@ -109,7 +109,7 @@ def offset_momentum(ref, bodies=SYSTEM, px=0.0, py=0.0, pz=0.0):
     v[1] = py / m
     v[2] = pz / m
 
-def run(n, ref='sun'):
+def pyNBodyRun(n, ref='sun'):
     offset_momentum(BODIES[ref])
     report_energy()
     advance(0.01, n)

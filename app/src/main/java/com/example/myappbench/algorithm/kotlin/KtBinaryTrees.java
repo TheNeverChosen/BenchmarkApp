@@ -22,7 +22,7 @@ public class KtBinaryTrees {
     private static final ExecutorService EXECUTOR_SERVICE =
             Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
 
-    public static void run(int num) throws Exception {
+    public static void ktBinaryTreesRun(int num) throws Exception {
         int n = num;
 
         final int maxDepth = n < (MIN_DEPTH + 2) ? MIN_DEPTH + 2 : n;

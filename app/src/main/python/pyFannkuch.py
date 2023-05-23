@@ -77,7 +77,7 @@ def task(n, start, size):
     alternating_flips = alternating_flips_generator(n, start, size)
     return sum(islice(alternating_flips, size)), next(alternating_flips)
 
-def run(n):
+def pyFannkuchRun(n):
     if n < 0:
         for data in islice(permutations(-n, 0, factorial(-n)), factorial(-n)):
             print(''.join(map(lambda n: str(n + 1), data)))

@@ -27,7 +27,7 @@ def check_tree(node):
 def make_check(dd, make=make_tree, check=check_tree):
     return check(make(dd))
 
-def run(n, min_depth=4):
+def pyBinaryTreesRun(n, min_depth=4):
 
     max_depth = max(min_depth + 2, n)
     stretch_depth = max_depth + 1

@@ -36,7 +36,7 @@ def next_Term(k):
     num = num * k
 
 
-def run(num):
+def pyPiDigitsRun(num):
     global tmp1, tmp2, acc, den, num
     n=num
 

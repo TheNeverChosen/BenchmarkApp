@@ -11,7 +11,7 @@ package com.example.myappbench.algorithm.java;
 */
 
 public final class JavaNBody {
-    public static void run(int num) {
+    public static void jvNBodyRun(int num) {
         int n = num;
 
         NBodySystem bodies = new NBodySystem();

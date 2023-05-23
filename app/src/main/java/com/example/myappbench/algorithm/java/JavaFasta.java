@@ -34,7 +34,7 @@ public class JavaFasta {
     private static final AtomicInteger OUT = new AtomicInteger();
     private static final int BUFFERS_IN_PLAY = 6;
 
-    public static void run(int num) {
+    public static void jvFastaRun(int num) {
         int n = num;
 
         for (int i = 0; i < WORKERS.length; i++) {

@@ -21,8 +21,6 @@ android {
         }
 
         python {
-            buildPython "C:/laragon/bin/python/python-3.10;"
-
             pyc {
                 src false
             }
