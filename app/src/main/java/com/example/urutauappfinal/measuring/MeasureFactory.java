@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.BatteryManager;
+import android.os.Debug;
 import android.os.SystemClock;
 import com.example.urutauappfinal.collectionFiles.EscritorDeArquivo;
 import android.util.Log;
@@ -14,7 +15,7 @@ import com.example.urutauappfinal.measuring.memory.MemoryMeasure;
 public class MeasureFactory {
     //COMMON
     public static final long MEASUREMENT_INTERVAL_MS = 100; // Measures every 1/10 second
-
+    static Debug.MemoryInfo appMemoryInfo = new Debug.MemoryInfo();
     //MEMORY
     public static final long mb=1024*1024;
 
@@ -36,16 +37,14 @@ public class MeasureFactory {
         long time = getTime(); //ms
         long totalMemory = Runtime.getRuntime().totalMemory(); //bytes
         long freeMemory = Runtime.getRuntime().freeMemory(); //bytes
+        Debug.getMemoryInfo(appMemoryInfo);
+        long memoryOthers = 0;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
+            memoryOthers = Long.parseLong(appMemoryInfo.getMemoryStat("summary.private-other"))*1024; // bytes
+        }
+        long memoryNative = Debug.getNativeHeapAllocatedSize(); //bytes
 
-        String tempo = "Time: " + time + "\n";
-        String memoriaT = "Memoria Total: " + totalMemory + "\n";
-        String memoriaF = "Memoria Livre: " + freeMemory + "\n";
-
-        //Log.i("Dados Memoria: ", tempo + memoriaT + memoriaF);
-
-        MemoryMeasure.mediaMemory(totalMemory, false);
-
-        return new MemoryMeasure(time, totalMemory, freeMemory);
+        return new MemoryMeasure(time, totalMemory, freeMemory,memoryNative,memoryOthers);
     }
 
     public EnergyMeasure getEnergy(){
@@ -57,12 +56,6 @@ public class MeasureFactory {
 
         //https://developer.android.com/reference/android/os/BatteryManager#BATTERY_PROPERTY_CURRENT_NOW
         double current = batteryManager.getIntProperty(BatteryManager.BATTERY_PROPERTY_CURRENT_NOW); //micro-amperes
-
-        String tempo = "Time: " + time + "\n";
-        String tensao = "Voltage: " + voltage + "\n";
-        String corrente = "Corrente: " + current + "\n";
-
-        //Log.i("Dados Energia: ", tempo + tensao + corrente);
 
         return new EnergyMeasure(time, voltage, current);
     }

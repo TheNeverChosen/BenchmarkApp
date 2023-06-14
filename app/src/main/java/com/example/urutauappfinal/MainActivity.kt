@@ -128,7 +128,7 @@ class MainActivity : AppCompatActivity() {
 
         // BinaryTrees
 
-//        val binaryArgs = Array<Any>(1) { 21 }
+        val binaryArgs = Array<Any>(1) { 21}
 
 //        var data = bench.execute(Benchmark.Language.C, Benchmark.Algorithm.BINARY_TREES, binaryArgs)
 //        Log.i("C Alg BinaryTree: ", data.toString())

@@ -89,14 +89,9 @@ public class BenchmarkData{
     //tostring with time start, time end, duration, total energy joules, total energy watt hour
     @Override
     public String toString(){
-        long mediaMemory = MemoryMeasure.mediaMemory(0,false);
-        MemoryMeasure.mediaMemory(0,true);
-        return "Time Start: " + timeStart + " ms" + 
-          "\nTime End: " + timeEnd + " ms" + 
-          "\nDuration: " + getDuration() + " ms" + 
-          "\nTotal Energy (J): " + getTotalEnergyJoules() + " J" + 
-          "\nTotal Energy (Wh): " + getTotalEnergyWattHour() + " Wh" +
-          "\nMedia Memory: " + mediaMemory + " B";
+        return "Time Start: " + timeStart + " ms" +
+                "\nTime End: " + timeEnd + " ms" +
+                "\nDuration: " + getDuration() + " ms" +
+                "\nTotal Energy (J): " + getTotalEnergyJoules() + " J\n";
     }
-
 }

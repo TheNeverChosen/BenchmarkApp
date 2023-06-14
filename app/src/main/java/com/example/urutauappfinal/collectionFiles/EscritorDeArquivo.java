@@ -15,7 +15,7 @@ import java.util.LinkedList;
 import java.util.UUID;
 
 public class EscritorDeArquivo {
-    static long MB = 1024*1024;
+    static double MB = 1024*1024;
     static FileWriter escritor = null;
     public static void criarEscrever(Benchmark.Language language,Benchmark.Algorithm bench, BenchmarkData data) {
         try {
@@ -34,7 +34,7 @@ public class EscritorDeArquivo {
                 arquivo.createNewFile();
                 escritor = new FileWriter(arquivo);
                 escritor.append(language.name()+"-"+bench.name()+"\n");
-                escreverDados(data);
+                escreverDados(data,language);
                 escritor.flush();
                 escritor.close();
 
@@ -45,27 +45,27 @@ public class EscritorDeArquivo {
         }
     }
 
-    private static void escreverDados(BenchmarkData data) {
+    private static void escreverDados(BenchmarkData data,Benchmark.Language language) {
         try {
             LinkedList<MemoryMeasure> memLs = data.getMemLs();
             LinkedList<EnergyMeasure> energyLs = data.getEnergyLs();
-            long mediaTotalMemory=0,mediaFreeMemory=0,mediaUsedMemory=0;
-            escritor.append("tempo em (ms),TotalMemory (MB),FreeMemory (MB),UsedMemory (MB)\n");
+            double mediaUsedMemory=0,usedMemory=0;
+            escritor.append("tempo,memória utilizada (MB)\n");
             for (MemoryMeasure mem : memLs) {
-                escritor.append(mem.getTime() + "," + mem.getTotalMemory() / MB + "," + mem.getFreeMemory() / MB + ","+(mem.getTotalMemory()-mem.getFreeMemory())/MB+"\n");
-                mediaTotalMemory+=mem.getTotalMemory();
-                mediaFreeMemory+=mem.getFreeMemory();
+                if(language==Benchmark.Language.C || language==Benchmark.Language.CPP) usedMemory = mem.getMemoryNative();
+                else if(language==Benchmark.Language.PYTHON) usedMemory = mem.getMemoryNative()+mem.getMemoryOthers();
+                else usedMemory = mem.getTotalMemory()-mem.getFreeMemory();
+                usedMemory/=MB;
+                escritor.append(mem.getTime() +","+usedMemory+"\n");
+                mediaUsedMemory+=usedMemory;
             }
-            mediaUsedMemory = (mediaTotalMemory-mediaFreeMemory)/memLs.size();
-            mediaTotalMemory/=memLs.size();
-            mediaFreeMemory/=memLs.size();
-            escritor.append("média,"+mediaTotalMemory/MB+","+mediaFreeMemory/MB+","+mediaUsedMemory/MB+"\n");
-            escritor.append("tempo em (ms),Voltagem (V),Corrente (A),Potência (W)\n");
+            mediaUsedMemory /= memLs.size();
+            escritor.append("tempo,Voltagem (V),Corrente (A),Potência (W)\n");
             for (EnergyMeasure energy : energyLs) {
                 escritor.append(energy.getTime() + "," + energy.getVoltageVolt() + "," + energy.getCurrentAmpere() + ","+energy.getPowerWatt()+"\n");
             }
-            escritor.append("Tempo inicial (ms),Tempo final (ms),Duração (ms),Energia total (J)\n");
-            escritor.append(data.getTimeStart()+","+data.getTimeEnd()+", "+data.getDuration()+","+data.getTotalEnergyJoules()+"\n");
+            escritor.append("Duração (ms),Média de memória,Energia total (J)\n");
+            escritor.append((data.getDuration()/1000)+","+(mediaUsedMemory)+","+data.getTotalEnergyJoules()+"\n");
         }
         catch (Exception e){
             e.printStackTrace();

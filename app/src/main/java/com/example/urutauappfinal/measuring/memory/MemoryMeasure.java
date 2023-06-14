@@ -3,15 +3,15 @@ package com.example.urutauappfinal.measuring.memory;
 import com.example.urutauappfinal.measuring.Measure;
 
 public class MemoryMeasure extends Measure{
-    private final long totalMemory, freeMemory; // bytes
+    private final long totalMemory, freeMemory, memoryNative,memoryOthers; // bytes
 
-    public static int cont = 0;
-    public static long mediaMemory = 0;
 
-    public MemoryMeasure(long time, long totalMemory, long freeMemory){
+    public MemoryMeasure(long time, long totalMemory, long freeMemory,long memoryNative,long memoryOthers){
         super(time);
         this.totalMemory = totalMemory;
         this.freeMemory = freeMemory;
+        this.memoryNative = memoryNative;
+        this.memoryOthers = memoryOthers;
     }
 
     //Total Memory in bytes
@@ -24,25 +24,12 @@ public class MemoryMeasure extends Measure{
         return freeMemory;
     }
 
-    public static long mediaMemory(long totalMemory, boolean estado){
-        mediaMemory += totalMemory;
-        cont++;
-        if(estado == false){
-            return mediaMemory/cont;
-        }else{
-            cont = 0;
-            mediaMemory = 0;
-            return 0;
-        }
-
+    public long getMemoryNative(){
+        return memoryNative;
     }
 
-    @Override
-    public String toString(){
-        return "MemoryMeasure{" +
-                "time=" + time +
-                ", totalMemory=" + totalMemory +
-                ", freeMemory=" + freeMemory +
-                '}';
+    public long getMemoryOthers(){
+        return memoryOthers;
     }
+
 }
