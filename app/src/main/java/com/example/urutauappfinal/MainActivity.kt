@@ -97,9 +97,9 @@ class MainActivity : AppCompatActivity() {
 //        Log.i("Kotlin Alg Fasta: ", data.toString())
 //        EscritorDeArquivo.criarEscrever(Benchmark.Language.KOTLIN,Benchmark.Algorithm.FASTA,data)
 
-//        var data = bench.execute(Benchmark.Language.PYTHON, Benchmark.Algorithm.FASTA, fastaArgs)
-//        Log.i("Python Alg Fasta: ", data.toString())
-//        EscritorDeArquivo.criarEscrever(Benchmark.Language.PYTHON,Benchmark.Algorithm.FASTA,data)
+        var data = bench.execute(Benchmark.Language.PYTHON, Benchmark.Algorithm.FASTA, fastaArgs)
+        Log.i("Python Alg Fasta: ", data.toString())
+        EscritorDeArquivo.criarEscrever(Benchmark.Language.PYTHON,Benchmark.Algorithm.FASTA,data)
 
 
         // FannKuch
