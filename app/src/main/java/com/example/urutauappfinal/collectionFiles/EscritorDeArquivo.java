@@ -65,7 +65,7 @@ public class EscritorDeArquivo {
                 escritor.append(energy.getTime() + "," + energy.getVoltageVolt() + "," + energy.getCurrentAmpere() + ","+energy.getPowerWatt()+"\n");
             }
             escritor.append("Duração (ms),Média de memória,Energia total (J)\n");
-            escritor.append((data.getDuration()/1000)+","+(mediaUsedMemory)+","+data.getTotalEnergyJoules()+"\n");
+            escritor.append((data.getDuration()/1000.0)+","+(mediaUsedMemory)+","+data.getTotalEnergyJoules()+"\n");
         }
         catch (Exception e){
             e.printStackTrace();

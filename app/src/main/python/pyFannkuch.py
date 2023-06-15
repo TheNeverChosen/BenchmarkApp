@@ -93,7 +93,6 @@ def pyFannkuchRun(n):
             task_count = 1
 
         assert(task_size % 2 == 0)
-
         task_args = [(n, i * task_size, task_size) for i in range(task_count)]
 
         with Pool() as pool:
