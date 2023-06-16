@@ -60,12 +60,12 @@ public class EscritorDeArquivo {
                 mediaUsedMemory+=usedMemory;
             }
             mediaUsedMemory /= memLs.size();
-            escritor.append("tempo,Voltagem (V),Corrente (A),Potência (W)\n");
+            escritor.append("tempo,Potência (W)\n");
             for (EnergyMeasure energy : energyLs) {
-                escritor.append(energy.getTime() + "," + energy.getVoltageVolt() + "," + energy.getCurrentAmpere() + ","+energy.getPowerWatt()+"\n");
+                escritor.append(energy.getTime() + ","+energy.getPowerWatt()+"\n");
             }
-            escritor.append("Duração (ms),Média de memória,Energia total (J)\n");
-            escritor.append((data.getDuration()/1000.0)+","+(mediaUsedMemory)+","+data.getTotalEnergyJoules()+"\n");
+            escritor.append("Duração (s),Média de memória,Energia total (J)\n");
+            escritor.append((data.getDuration()/1000.0)+","+(mediaUsedMemory)+","+data.getTotalEnergy()+"\n");
         }
         catch (Exception e){
             e.printStackTrace();

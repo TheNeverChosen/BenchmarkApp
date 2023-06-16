@@ -26,12 +26,12 @@ public class BatteryMonitorThread extends Thread {
     public void run() {
         mRunning = true;
         while(mRunning) {
-            energyVals.add(mf.getEnergy());
             try {
                 sleep(MeasureFactory.MEASUREMENT_INTERVAL_MS);
             } catch(InterruptedException e) {
                 e.printStackTrace();
             }
+            energyVals.add(mf.getEnergy());
         }
     }
 
