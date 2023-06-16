@@ -33,31 +33,30 @@ class MainActivity : AppCompatActivity() {
         val piArgs = Array<Any>(1){10000}
 
 
-        for(i in 1..11){
-            var data = bench.execute(Benchmark.Language.C, Benchmark.Algorithm.PI_DIGITS, piArgs)
-            Log.i("C Alg Pidigits: ", data.toString())
-            EscritorDeArquivo.criarEscrever(Benchmark.Language.C,Benchmark.Algorithm.PI_DIGITS,data)
-        }
-
-        for(i in 1..11){
-            var data = bench.execute(Benchmark.Language.CPP, Benchmark.Algorithm.PI_DIGITS, piArgs)
-            Log.i("CPP Alg Pidigits: ", data.toString())
-            EscritorDeArquivo.criarEscrever(Benchmark.Language.CPP,Benchmark.Algorithm.PI_DIGITS,data);
-        }
-
-        for(i in 1..11){
-            var data = bench.execute(Benchmark.Language.JAVA, Benchmark.Algorithm.PI_DIGITS, piArgs)
-            Log.i("Java Alg Pidigits: ", data.toString())
-            EscritorDeArquivo.criarEscrever(Benchmark.Language.JAVA,Benchmark.Algorithm.PI_DIGITS,data)
-
-        }
-
-        for(i in 1..11){
-            var data = bench.execute(Benchmark.Language.KOTLIN, Benchmark.Algorithm.PI_DIGITS, piArgs)
-            Log.i("Kotlin Alg Pidigits: ", data.toString())
-            EscritorDeArquivo.criarEscrever(Benchmark.Language.KOTLIN,Benchmark.Algorithm.PI_DIGITS,data)
-        }
-
+//        for(i in 1..11){
+//            var data = bench.execute(Benchmark.Language.C, Benchmark.Algorithm.PI_DIGITS, piArgs)
+//            Log.i("C Alg Pidigits: ", data.toString())
+//            EscritorDeArquivo.criarEscrever(Benchmark.Language.C,Benchmark.Algorithm.PI_DIGITS,data)
+//        }
+//
+//        for(i in 1..11){
+//            var data = bench.execute(Benchmark.Language.CPP, Benchmark.Algorithm.PI_DIGITS, piArgs)
+//            Log.i("CPP Alg Pidigits: ", data.toString())
+//            EscritorDeArquivo.criarEscrever(Benchmark.Language.CPP,Benchmark.Algorithm.PI_DIGITS,data);
+//        }
+//
+//        for(i in 1..11){
+//            var data = bench.execute(Benchmark.Language.JAVA, Benchmark.Algorithm.PI_DIGITS, piArgs)
+//            Log.i("Java Alg Pidigits: ", data.toString())
+//            EscritorDeArquivo.criarEscrever(Benchmark.Language.JAVA,Benchmark.Algorithm.PI_DIGITS,data)
+//        }
+//
+//        for(i in 1..11){
+//            var data = bench.execute(Benchmark.Language.KOTLIN, Benchmark.Algorithm.PI_DIGITS, piArgs)
+//            Log.i("Kotlin Alg Pidigits: ", data.toString())
+//            EscritorDeArquivo.criarEscrever(Benchmark.Language.KOTLIN,Benchmark.Algorithm.PI_DIGITS,data)
+//        }
+//
 //        for(i in 1..11){
 //            var data = bench.execute(Benchmark.Language.PYTHON, Benchmark.Algorithm.PI_DIGITS, piArgs)
 //            Log.i("Python Alg Pidigits: ", data.toString())

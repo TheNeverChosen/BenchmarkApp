@@ -39,12 +39,14 @@ public class MeasureFactory {
         long freeMemory = Runtime.getRuntime().freeMemory(); //bytes
         Debug.getMemoryInfo(appMemoryInfo);
         long memoryOthers = 0;
+        long memoryHeapJava = 0;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
             memoryOthers = Long.parseLong(appMemoryInfo.getMemoryStat("summary.private-other"))*1024; // bytes
+            memoryHeapJava = Long.parseLong(appMemoryInfo.getMemoryStat("summary.java-heap"))*1024; //bytes
         }
         long memoryNative = Debug.getNativeHeapAllocatedSize(); //bytes
 
-        return new MemoryMeasure(time, totalMemory, freeMemory,memoryNative,memoryOthers);
+        return new MemoryMeasure(time, memoryHeapJava,memoryNative,memoryOthers);
     }
 
     public EnergyMeasure getEnergy(){

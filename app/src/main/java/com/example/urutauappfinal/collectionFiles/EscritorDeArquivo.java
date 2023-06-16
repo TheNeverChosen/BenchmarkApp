@@ -54,7 +54,7 @@ public class EscritorDeArquivo {
             for (MemoryMeasure mem : memLs) {
                 if(language==Benchmark.Language.C || language==Benchmark.Language.CPP) usedMemory = mem.getMemoryNative();
                 else if(language==Benchmark.Language.PYTHON) usedMemory = mem.getMemoryNative()+mem.getMemoryOthers();
-                else usedMemory = mem.getTotalMemory()-mem.getFreeMemory();
+                else usedMemory = mem.getMemoryHeapJava();
                 usedMemory/=MB;
                 escritor.append(mem.getTime() +","+usedMemory+"\n");
                 mediaUsedMemory+=usedMemory;
