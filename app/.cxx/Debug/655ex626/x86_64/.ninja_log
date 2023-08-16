@@ -1,0 +1,15 @@
+# ninja log v5
+1	51	1691953705016144498	CMakeFiles/bench_c.dir/src/main/c/c_binarytrees.c.o	c465b3791b3176c0
+1	62	1691953705000144125	CMakeFiles/bench_c.dir/src/main/c/c_pidigits.c.o	b3a6d7a094ee6f0f
+2	64	1691953705004144218	CMakeFiles/bench_c.dir/src/main/c/c_fannkuch.c.o	5b9553e42d8db172
+12	65	1691953705032144870	CMakeFiles/bench_c.dir/src/main/c/c_nbody.c.o	8dc9edf20690c804
+21	137	1691953705096146359	CMakeFiles/bench_c.dir/src/main/c/c_fasta.c.o	16eab7ff501201ee
+62	188	1691953705152147662	CMakeFiles/bench_cpp.dir/src/main/cpp/cpp_fannkuch.cpp.o	24c83789796a2b7f
+137	207	1691953705168148034	../../../../build/intermediates/cxx/Debug/655ex626/obj/x86_64/libbench_c.so	9024f15027d0e71a
+64	424	1691953705388153154	CMakeFiles/bench_cpp.dir/src/main/cpp/cpp_nbody.cpp.o	bda0ee1206cf287c
+188	618	1691953705568157342	CMakeFiles/urutauappfinal.dir/src/main/cpp/native-lib.cpp.o	d738808c9d7ef736
+618	745	1691953705704160507	../../../../build/intermediates/cxx/Debug/655ex626/obj/x86_64/liburutauappfinal.so	5adcc6686feaa283
+52	942	1691953705904165160	CMakeFiles/bench_cpp.dir/src/main/cpp/cpp_pidigits.cpp.o	63359d26438ac97e
+37	1004	1691953705964166556	CMakeFiles/bench_cpp.dir/src/main/cpp/cpp_binarytrees.cpp.o	d09c8e70deaf6dca
+65	1132	1691953706092169543	CMakeFiles/bench_cpp.dir/src/main/cpp/cpp_fasta.cpp.o	af33c3132323d953
+1132	1190	1691953706148170851	../../../../build/intermediates/cxx/Debug/655ex626/obj/x86_64/libbench_cpp.so	7d6016f0e89bef5c

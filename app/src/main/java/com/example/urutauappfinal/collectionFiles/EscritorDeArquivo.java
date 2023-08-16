@@ -1,23 +1,21 @@
 package com.example.urutauappfinal.collectionFiles;
 
 import android.os.Environment;
+import android.util.Log;
 
 import com.example.urutauappfinal.benchmarking.Benchmark;
 import com.example.urutauappfinal.benchmarking.BenchmarkData;
-import com.example.urutauappfinal.measuring.energy.EnergyMeasure;
-import com.example.urutauappfinal.measuring.memory.MemoryMeasure;
+import com.example.urutauappfinal.measuring.GeneralMeasure;
 
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
+import java.io.Writer;
+import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.UUID;
 
 public class EscritorDeArquivo {
-    static double MB = 1024*1024;
     static FileWriter escritor = null;
-    public static void criarEscrever(Benchmark.Language language,Benchmark.Algorithm bench, BenchmarkData data) {
+    public static boolean criarEscrever(Benchmark.Language language,Benchmark.Algorithm bench, BenchmarkData data) {
         try {
             if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
                 String diretorio = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS) + "/coleta/";
@@ -37,39 +35,33 @@ public class EscritorDeArquivo {
                 escreverDados(data,language);
                 escritor.flush();
                 escritor.close();
-
+                Log.i("escrita","escrita terminada!");
             }
         }
         catch (Exception e){
             e.printStackTrace();
+            Log.i("finish","escrita não terminada2!");
+            return false;
         }
+        return true;
     }
 
-    private static void escreverDados(BenchmarkData data,Benchmark.Language language) {
+    private static boolean escreverDados(BenchmarkData data, Benchmark.Language language) {
         try {
-            LinkedList<MemoryMeasure> memLs = data.getMemLs();
-            LinkedList<EnergyMeasure> energyLs = data.getEnergyLs();
-            double mediaUsedMemory=0,usedMemory=0;
-            escritor.append("tempo,memória utilizada (MB)\n");
-            for (MemoryMeasure mem : memLs) {
-                if(language==Benchmark.Language.C || language==Benchmark.Language.CPP) usedMemory = mem.getMemoryNative();
-                else if(language==Benchmark.Language.PYTHON) usedMemory = mem.getMemoryNative()+mem.getMemoryOthers();
-                else usedMemory = mem.getMemoryHeapJava();
-                usedMemory/=MB;
-                escritor.append(mem.getTime() +","+usedMemory+"\n");
-                mediaUsedMemory+=usedMemory;
+            LinkedList<GeneralMeasure> memEnLs = (LinkedList<GeneralMeasure>) data.getMemEnLs().clone();
+            escritor.append("tempo,memoryOthers,memoryHeapJava,memoryNative,memoryCode,memoryStack,current,voltage\n");
+            for(GeneralMeasure ls: memEnLs){
+               escritor.append(ls.getTime() +","+ls.getMemoryOthers()+","+ls.getMemoryHeapJava()+","+ls.getMemoryNative()+","+ls.getMemoryCode()
+                        +","+ls.getMemoryStack()+","+ls.getCurrent()+","+ls.getVoltage()+"\n");
             }
-            mediaUsedMemory /= memLs.size();
-            escritor.append("tempo,Potência (W)\n");
-            for (EnergyMeasure energy : energyLs) {
-                escritor.append(energy.getTime() + ","+energy.getPowerWatt()+"\n");
-            }
-            escritor.append("Duração (s),Média de memória,Energia total (J)\n");
-            escritor.append((data.getDuration()/1000.0)+","+(mediaUsedMemory)+","+data.getTotalEnergy()+"\n");
+            escritor.append("fim");
         }
         catch (Exception e){
             e.printStackTrace();
+            Log.i("finish","escrita não terminada4!");
+            return false;
         }
+        return true;
     }
 
 }

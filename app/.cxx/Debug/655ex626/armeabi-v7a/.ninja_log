@@ -1,0 +1,15 @@
+# ninja log v5
+1	30	1691953702720091452	CMakeFiles/bench_c.dir/src/main/c/c_nbody.c.o	51b5ee30c32f1b61
+0	35	1691953702728091637	CMakeFiles/bench_c.dir/src/main/c/c_binarytrees.c.o	70f98b36f082d2a0
+0	41	1691953702728091637	CMakeFiles/bench_c.dir/src/main/c/c_pidigits.c.o	4dd8e8bf50ebf7a5
+1	45	1691953702736091820	CMakeFiles/bench_c.dir/src/main/c/c_fannkuch.c.o	cce7cd7b2001cd7
+2	82	1691953702772092647	CMakeFiles/bench_c.dir/src/main/c/c_fasta.c.o	d2d1c7df45a65937
+82	155	1691953702844094301	../../../../build/intermediates/cxx/Debug/655ex626/obj/armeabi-v7a/libbench_c.so	cbcf6cae487b6310
+35	165	1691953702840094209	CMakeFiles/bench_cpp.dir/src/main/cpp/cpp_fannkuch.cpp.o	26cfeeed5b4f6522
+41	261	1691953702952096782	CMakeFiles/bench_cpp.dir/src/main/cpp/cpp_nbody.cpp.o	ed4a4a0ea53cc1b6
+155	482	1691953703172101853	CMakeFiles/urutauappfinal.dir/src/main/cpp/native-lib.cpp.o	d07648b99df92b4e
+482	511	1691953703200102498	../../../../build/intermediates/cxx/Debug/655ex626/obj/armeabi-v7a/liburutauappfinal.so	2ca3aeea71bf2bf5
+15	545	1691953703232103236	CMakeFiles/bench_cpp.dir/src/main/cpp/cpp_binarytrees.cpp.o	ae46debf987962dd
+30	554	1691953703244103513	CMakeFiles/bench_cpp.dir/src/main/cpp/cpp_pidigits.cpp.o	50552d2dca7b99be
+45	751	1691953703440108035	CMakeFiles/bench_cpp.dir/src/main/cpp/cpp_fasta.cpp.o	223fb7e6e96dcf2f
+752	802	1691953703488109142	../../../../build/intermediates/cxx/Debug/655ex626/obj/armeabi-v7a/libbench_cpp.so	a5a399ce6f30b99b

@@ -1,0 +1,78 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.19"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "urutauappfinal",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "bench_c::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-bench_c-Debug-f0ada2f9222b55a75692.json",
+					"name" : "bench_c",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "bench_cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-bench_cpp-Debug-ba979bb12671d8d0f43b.json",
+					"name" : "bench_cpp",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "urutauappfinal::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-urutauappfinal-Debug-b06512408bf6f33ae4eb.json",
+					"name" : "urutauappfinal",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/jonatas/Downloads/BenchmarkApp-testes/app/.cxx/Debug/655ex626/x86",
+		"source" : "/home/jonatas/Downloads/BenchmarkApp-testes/app"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

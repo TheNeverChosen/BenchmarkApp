@@ -1,0 +1,23 @@
+# ninja log v5
+21	98	1691977564493369422	CMakeFiles/bench_c.dir/src/main/c/c_fasta.c.o	7197b24123ee0ece
+1	125	1691978749977525946	../../../../build/intermediates/cxx/Debug/655ex626/obj/arm64-v8a/libbench_cpp.so	6e1475395ad64f11
+1	95	1691977564489369318	CMakeFiles/bench_c.dir/src/main/c/c_binarytrees.c.o	f25eb2e1a8fd64b
+3	1050	1691976165643312517	CMakeFiles/bench_cpp.dir/src/main/cpp/cpp_pidigits.cpp.o	2b6673ebbd389ced
+523	563	1691955939503284152	../../../../build/intermediates/cxx/Debug/655ex626/obj/arm64-v8a/liburutauappfinal.so	82f09f2b92bd4781
+1	80	1691978749937525428	../../../../build/intermediates/cxx/Debug/655ex626/obj/arm64-v8a/libbench_c.so	506c00e2320995f2
+176	522	1691955939467283616	CMakeFiles/urutauappfinal.dir/src/main/cpp/native-lib.cpp.o	c10c657c8bceb59
+2	108	1691977564501369629	CMakeFiles/bench_c.dir/src/main/c/c_fannkuch.c.o	500135774cc62e72
+1	939	1691976165531310211	CMakeFiles/bench_cpp.dir/src/main/cpp/cpp_binarytrees.cpp.o	b2f480a59904c410
+3	371	1691976164967298604	CMakeFiles/bench_cpp.dir/src/main/cpp/cpp_fannkuch.cpp.o	deca35bc9a2c045c
+9	472	1691976165063300579	CMakeFiles/bench_cpp.dir/src/main/cpp/cpp_nbody.cpp.o	1a2eebc8b9bdac0c
+1	37	1691977564429367762	CMakeFiles/bench_c.dir/src/main/c/c_pidigits.c.o	20bf65f06240a576
+11	125	1691977564517370044	CMakeFiles/bench_c.dir/src/main/c/c_nbody.c.o	c10095dcc40c7022
+23	1105	1691976165695313587	CMakeFiles/bench_cpp.dir/src/main/cpp/cpp_fasta.cpp.o	bf4e6a66e2c23cea
+2	875	1692033979930601239	CMakeFiles/bench_cpp.dir/src/main/cpp/cpp_fannkuch.cpp.o	deca35bc9a2c045c
+875	1100	1692033980146594485	../../../../build/intermediates/cxx/Debug/655ex626/obj/arm64-v8a/libbench_cpp.so	6e1475395ad64f11
+2	810	1692034104450955003	CMakeFiles/bench_cpp.dir/src/main/cpp/cpp_fannkuch.cpp.o	deca35bc9a2c045c
+810	1148	1692034104770946223	../../../../build/intermediates/cxx/Debug/655ex626/obj/arm64-v8a/libbench_cpp.so	6e1475395ad64f11
+15	377	1692034424451315283	CMakeFiles/bench_c.dir/src/main/c/c_fannkuch.c.o	500135774cc62e72
+377	679	1692034424731309409	../../../../build/intermediates/cxx/Debug/655ex626/obj/arm64-v8a/libbench_c.so	506c00e2320995f2
+19	1550	1692034425619290794	CMakeFiles/bench_cpp.dir/src/main/cpp/cpp_fannkuch.cpp.o	deca35bc9a2c045c
+1550	1720	1692034425763287776	../../../../build/intermediates/cxx/Debug/655ex626/obj/arm64-v8a/libbench_cpp.so	6e1475395ad64f11

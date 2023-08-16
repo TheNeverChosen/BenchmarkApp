@@ -17,8 +17,7 @@ import com.example.urutauappfinal.algorithms.kotlin.KtNBody;
 import com.example.urutauappfinal.algorithms.kotlin.KtPiDigits;
 import com.example.urutauappfinal.algorithms.python.PyAlgorithms;
 import com.example.urutauappfinal.measuring.MeasureFactory;
-import com.example.urutauappfinal.measuring.energy.BatteryMonitorThread;
-import com.example.urutauappfinal.measuring.memory.MemoryMonitorThread;
+import com.example.urutauappfinal.measuring.MonitorThread;
 
 public class Benchmark{
     public enum Language{
@@ -39,8 +38,7 @@ public class Benchmark{
     }
 
     private final Context context;
-    private MemoryMonitorThread memThread;
-    private BatteryMonitorThread batThread;
+    private MonitorThread mThread;
     private long timeStart, timeEnd;
 
     public Benchmark(Context context){
@@ -48,16 +46,14 @@ public class Benchmark{
     }
 
     private void startNewMonitoring(){
-        memThread = new MemoryMonitorThread();
-        batThread = new BatteryMonitorThread(context);
-        memThread.start(); batThread.start();
+        mThread = new MonitorThread(context);
+        mThread.start();
         timeStart = MeasureFactory.getTime();
     }
 
     private void terminateMonitoring(){
         timeEnd = MeasureFactory.getTime();
-        if(memThread!=null) memThread.stopMonitoring();
-        if(batThread!=null) batThread.stopMonitoring();
+        if(mThread!=null) mThread.stopMonitoring();
     }
 
 
@@ -78,7 +74,7 @@ public class Benchmark{
         }
         terminateMonitoring();
 
-        return new BenchmarkData(timeStart, timeEnd, memThread.getMemoryVals(), batThread.getEnergyVals());
+        return new BenchmarkData(timeStart, timeEnd,mThread.getMemEnVals());
     }
 
     private BenchmarkData execCpp(Algorithm algo, Object[] args){
@@ -98,7 +94,7 @@ public class Benchmark{
         }
         terminateMonitoring();
 
-        return new BenchmarkData(timeStart, timeEnd, memThread.getMemoryVals(), batThread.getEnergyVals());
+        return new BenchmarkData(timeStart, timeEnd,mThread.getMemEnVals());
     }
 
     private BenchmarkData execJava(Algorithm algo, Object[] args){
@@ -123,7 +119,7 @@ public class Benchmark{
         }
         terminateMonitoring();
 
-        return new BenchmarkData(timeStart, timeEnd, memThread.getMemoryVals(), batThread.getEnergyVals());
+        return new BenchmarkData(timeStart, timeEnd,mThread.getMemEnVals());
     }
 
     private BenchmarkData execKotlin(Algorithm algo, Object[] args){
@@ -148,7 +144,7 @@ public class Benchmark{
         }
         terminateMonitoring();
 
-        return new BenchmarkData(timeStart, timeEnd, memThread.getMemoryVals(), batThread.getEnergyVals());
+        return new BenchmarkData(timeStart, timeEnd,mThread.getMemEnVals());
     }
 
     private BenchmarkData execRust(Algorithm algo, Object[] args){
@@ -171,7 +167,7 @@ public class Benchmark{
         }
         terminateMonitoring();
 
-        return new BenchmarkData(timeStart, timeEnd, memThread.getMemoryVals(), batThread.getEnergyVals());
+        return new BenchmarkData(timeStart, timeEnd,mThread.getMemEnVals());
     }
 
     public BenchmarkData execute(Language lang, Algorithm algo, Object[] args){

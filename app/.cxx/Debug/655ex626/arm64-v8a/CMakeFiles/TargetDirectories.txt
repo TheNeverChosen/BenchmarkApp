@@ -1,0 +1,4 @@
+/home/jonatas/Downloads/BenchmarkApp-testes/app/.cxx/Debug/655ex626/arm64-v8a/CMakeFiles/bench_c.dir
+/home/jonatas/Downloads/BenchmarkApp-testes/app/.cxx/Debug/655ex626/arm64-v8a/CMakeFiles/bench_cpp.dir
+/home/jonatas/Downloads/BenchmarkApp-testes/app/.cxx/Debug/655ex626/arm64-v8a/CMakeFiles/edit_cache.dir
+/home/jonatas/Downloads/BenchmarkApp-testes/app/.cxx/Debug/655ex626/arm64-v8a/CMakeFiles/rebuild_cache.dir

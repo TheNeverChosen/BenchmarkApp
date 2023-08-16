@@ -18,7 +18,7 @@
 // divides evenly into all factorials larger than it. It should also be around
 // 2-8 times the amount of threads you want to use in order to create enough
 // blocks to more evenly distribute the workload amongst the threads.
-#define PREFERRED_NUMBER_OF_BLOCKS_TO_USE 12
+#define PREFERRED_NUMBER_OF_BLOCKS_TO_USE 24
 
 #include <stdint.h>
 #include <stdlib.h>

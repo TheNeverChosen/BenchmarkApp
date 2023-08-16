@@ -1,0 +1,41 @@
+{
+  "buildFiles": [
+    "/home/jonatas/Downloads/BenchmarkApp-testes/app/CMakeLists.txt",
+    "/home/jonatas/Downloads/BenchmarkApp-testes/app/src/main/jni/apr/CMakeLists.txt",
+    "/home/jonatas/Downloads/BenchmarkApp-testes/app/src/main/jni/boost/CMakeLists.txt",
+    "/home/jonatas/Downloads/BenchmarkApp-testes/app/src/main/jni/gmp/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/home/jonatas/Android/Sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/home/jonatas/Downloads/BenchmarkApp-testes/app/.cxx/Debug/655ex626/arm64-v8a",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/home/jonatas/Android/Sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/home/jonatas/Downloads/BenchmarkApp-testes/app/.cxx/Debug/655ex626/arm64-v8a",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {
+    "bench_c::@6890427a1f51a3e7e1df": {
+      "artifactName": "bench_c",
+      "abi": "arm64-v8a",
+      "output": "/home/jonatas/Downloads/BenchmarkApp-testes/app/build/intermediates/cxx/Debug/655ex626/obj/arm64-v8a/libbench_c.so",
+      "runtimeFiles": [
+        "/home/jonatas/Downloads/BenchmarkApp-testes/app/src/main/jni/gmp/arm64-v8a/libgmp.so",
+        "/home/jonatas/Downloads/BenchmarkApp-testes/app/src/main/jni/apr/arm64-v8a/lib/libapr-1.so"
+      ]
+    },
+    "bench_cpp::@6890427a1f51a3e7e1df": {
+      "artifactName": "bench_cpp",
+      "abi": "arm64-v8a",
+      "output": "/home/jonatas/Downloads/BenchmarkApp-testes/app/build/intermediates/cxx/Debug/655ex626/obj/arm64-v8a/libbench_cpp.so",
+      "runtimeFiles": [
+        "/home/jonatas/Downloads/BenchmarkApp-testes/app/src/main/jni/gmp/arm64-v8a/libgmp.so"
+      ]
+    }
+  }
+}

@@ -1,0 +1,5 @@
+/home/jonatas/Downloads/BenchmarkApp-testes/app/.cxx/Debug/655ex626/x86/CMakeFiles/bench_c.dir
+/home/jonatas/Downloads/BenchmarkApp-testes/app/.cxx/Debug/655ex626/x86/CMakeFiles/bench_cpp.dir
+/home/jonatas/Downloads/BenchmarkApp-testes/app/.cxx/Debug/655ex626/x86/CMakeFiles/urutauappfinal.dir
+/home/jonatas/Downloads/BenchmarkApp-testes/app/.cxx/Debug/655ex626/x86/CMakeFiles/edit_cache.dir
+/home/jonatas/Downloads/BenchmarkApp-testes/app/.cxx/Debug/655ex626/x86/CMakeFiles/rebuild_cache.dir

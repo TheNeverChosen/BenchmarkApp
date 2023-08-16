@@ -13,158 +13,193 @@
 // Eckehard Berns, Heiner Marxen, Hongwei Xi, and The Anh Tran and
 // also the Java program by Oleg Mazurov.
 
-#define PREFERRED_NUMBER_OF_BLOCKS_TO_USE 12
+#include <iostream>
+#include <vector>
+#include <algorithm>
 
-#include <stdlib.h>
-#include <stdio.h>
+using namespace std;
+
+static int64_t fact[32];
+
+void initializeFact(int n)
+{
+   fact[0] = 1;
+   for (auto i = 1; i <= n; ++i)
+      fact[i] = i * fact[i - 1];
+}
+
+class Permutation
+{
+public:
+    Permutation(int n, int64_t start);
+    void advance();
+    int64_t countFlips() const;
+
+private:
+    vector <int> count;
+    vector <int8_t> current;
+
+};
+
+//
+// Initialize the current value of a permutation
+// and the cycle count values used to advance .
+//
+Permutation::Permutation(int n, int64_t start)
+{
+   count.resize(n);
+   current.resize(n);
+
+   // Initialize count
+   for (auto i = n - 1; i >= 0; --i)
+   {
+      auto d = start / fact[i];
+      start = start % fact[i];
+      count[i] = d;
+   }
+
+   // Initialize current.
+   for (auto i = 0; i < n; ++i)
+      current[i] = i;
+
+   for (auto i = n - 1; i >= 0; --i)
+   {
+      auto d = count[i];
+      auto b = current.begin();
+      rotate(b, b + d, b + i + 1);
+   }
+}
+
+//
+// Advance the current permutation to the next in sequence.
+//
+void Permutation::advance()
+{
+   for (auto i = 1; ;++i)
+   {
+      // Tried using std::rotate here but that was slower.
+      auto first = current[0];
+      for (auto j = 0; j < i; ++j)
+         current[j] = current[j + 1];
+      current[i] = first;
+
+      ++(count[i]);
+      if (count[i] <= i)
+         break;
+      count[i] = 0;
+   }
+}
+
+//
+// Count the flips required to flip 0 to the front of the vector.
+//
+// Other than minor cosmetic changes, the following routine is
+// basically lifted from "fannkuch-redux C gcc #5"
+//
+inline int64_t Permutation::countFlips() const
+{
+   const auto n = current.size();
+   auto flips = 0;
+   auto first = current[0];
+   if (first > 0)
+   {
+      flips = 1;
+
+      int8_t temp[n];
+      // Make a copy of current to work on.
+      for (size_t i = 0; i < n; ++i)
+         temp[i] = current[i];
+
+
+      // Flip temp until the element at the first index is 0
+      for (; temp[first] > 0; ++flips)
+      {
+         // Record the newFirst and restore the old
+         // first at its new flipped position.
+         const int8_t newFirst = temp[first];
+         temp[first] = first;
+
+         if (first > 2)
+         {
+            int64_t low = 1, high = first - 1;
+            do
+            {
+               swap(temp[low], temp[high]);
+               if (!(low + 3 <= high && low < 16))
+                  break;
+               ++low;
+               --high;
+            } while (1);
+         }
+         // Update first to newFirst that we recorded earlier.
+         first = newFirst;
+      }
+   }
+   return flips;
+}
 
 extern "C"
 JNIEXPORT int JNICALL
-Java_com_example_urutauappfinal_algorithms_cpp_CppAlgorithms_cppFannkuchRun(JNIEnv *env, jclass thiz, jint num)
-{
-    const int n = num;
+Java_com_example_urutauappfinal_algorithms_cpp_CppAlgorithms_cppFannkuchRun(JNIEnv *env, jclass clazz,
+                                                                            jint num) {
+   int n = num;
 
-   // Create and initialize factorial_Lookup_Table.
-   int factorial_Lookup_Table[n+1];
-   factorial_Lookup_Table[0] = 1;
-   for (int i = 0; ++i <= n;)
-      factorial_Lookup_Table[i] = i * factorial_Lookup_Table[i - 1];
+   // Compute some factorials for later use.
+   initializeFact(n);
 
-   // Determine the block_Size to use. If n! is less than
-   // PREFERRED_NUMBER_OF_BLOCKS_TO_USE then just use a single block to prevent
-   // block_Size from being set to 0. This also causes smaller values of n to
-   // be computed serially which is faster and uses less resources for small
-   // values of n.
-   const int block_Size = factorial_Lookup_Table[n] /
-     (factorial_Lookup_Table[n] < PREFERRED_NUMBER_OF_BLOCKS_TO_USE ?
-     1 : PREFERRED_NUMBER_OF_BLOCKS_TO_USE);
+   // blockCount works best if it is set to a multiple of the number
+   // of CPUs so that the same number of blocks gets distributed to
+   // each cpu.  The computer used for development (Intel i7-4700MQ)
+   // had 8 "CPU"s (4 cores with hyperthreading) so 8, 16 and 24
+   // all worked well.
 
-   int maximum_Flip_Count = 0, checksum = 0;
+   auto blockCount = 24;
+   if (blockCount > fact[n])
+      blockCount = 1;
+   const int64_t blockLength = fact[n] / blockCount;
+
+   int64_t maxFlips = 0, checksum = 0;
 
    // Iterate over each block.
-   #pragma omp parallel for \
-     reduction(max:maximum_Flip_Count) reduction(+:checksum)
-   for (int initial_Permutation_Index_For_Block = 0;
-     initial_Permutation_Index_For_Block < factorial_Lookup_Table[n];
-     initial_Permutation_Index_For_Block += block_Size){
+#pragma omp parallel for \
+        reduction(max:maxFlips) \
+        reduction(+:checksum)
 
-      int count[n];
-      int temp_Permutation[n], current_Permutation[n];
-
-
-      // Initialize count and current_Permutation.
-      count[0] = 0;
-      for (int i = 0; i < n; ++i)
-         current_Permutation[i] = i;
-      for (int i = n - 1,
-        permutation_Index = initial_Permutation_Index_For_Block; i > 0; --i){
-         const int d = permutation_Index / factorial_Lookup_Table[i];
-         permutation_Index = permutation_Index % factorial_Lookup_Table[i];
-         count[i] = d;
-
-         for (int j = 0; j < n; ++j)
-            temp_Permutation[j] = current_Permutation[j];
-         for (int j = 0; j <= i; ++j)
-            current_Permutation[j] = j + d <= i ?
-              temp_Permutation[j + d] : temp_Permutation[j + d - i - 1];
-      }
-
+   for (int64_t blockStart = 0;
+        blockStart < fact[n];
+        blockStart += blockLength)
+   {
+      // first permutation for this block.
+      Permutation permutation(n, blockStart);
 
       // Iterate over each permutation in the block.
-      const int last_Permutation_Index_In_Block =
-        initial_Permutation_Index_For_Block + block_Size - 1;
-      for (int permutation_Index = initial_Permutation_Index_For_Block; ;
-        ++permutation_Index){
+      auto index = blockStart;
+      while (1)
+      {
+         const auto flips = permutation.countFlips();
 
-         // If the first value in the current_Permutation is not 1 (0) then
-         // we will need to do at least one flip for the current_Permutation.
-         if (current_Permutation[0] > 0){
-
-            // Make a copy of current_Permutation[] to work on. Note that we
-            // don't need to copy the first value since that will be stored
-            // in a separate variable since it gets used a lot.
-            for (int i = 0; ++i < n;)
-               temp_Permutation[i] = current_Permutation[i];
-
-            int flip_Count = 1;
-
-            // Flip temp_Permutation until the element at the first_Value
-            // index is 1 (0).
-            for (int first_Value = current_Permutation[0];
-              temp_Permutation[first_Value] > 0; ++flip_Count){
-
-               // Record the new_First_Value and restore the old
-               // first_Value at its new flipped position.
-               const int new_First_Value = temp_Permutation[first_Value];
-               temp_Permutation[first_Value] = first_Value;
-
-               // If first_Value is greater than 3 (2) then we are flipping
-               // a series of four or more values so we will also need to
-               // flip additional elements in the middle of the
-               // temp_Permutation.
-               if (first_Value > 2){
-                  int low_Index = 1, high_Index = first_Value - 1;
-                  // Note that this loop is written so that it will run at
-                  // most 16 times so that compilers will be more willing
-                  // to unroll it. Consequently this won't work right when
-                  // n is greater than 35. This would probably be the
-                  // least of your concerns since 21! won't fit into 64
-                  // bit integers and even if it did you probably wouldn't
-                  // want to run this program with a value that large
-                  // since it would take thousands of years to do on a
-                  // modern desktop computer. ;-)
-                  do{
-                     const int temp = temp_Permutation[high_Index];
-                     temp_Permutation[high_Index] = temp_Permutation[low_Index];
-                     temp_Permutation[low_Index] = temp;
-                  }while (low_Index++ + 3 <= high_Index-- && low_Index < 16);
-               }
-
-               // Update first_Value to new_First_Value that we recorded
-               // earlier.
-               first_Value = new_First_Value;
-            }
-
-
-            // Update the checksum.
-            if (permutation_Index % 2 == 0)
-               checksum += flip_Count;
+         if (flips)
+         {
+            if (index % 2 == 0)
+               checksum += flips;
             else
-               checksum -= flip_Count;
+               checksum -= flips;
 
-            // Update maximum_Flip_Count if necessary.
-            if (flip_Count > maximum_Flip_Count)
-               maximum_Flip_Count = flip_Count;
+            if (flips > maxFlips)
+               maxFlips = flips;
          }
 
-
-         // Break out of the loop when we get to the
-         // last_Permutation_Index_In_Block.
-         if (permutation_Index >= last_Permutation_Index_In_Block)
+         if (++index == blockStart + blockLength)
             break;
 
-         // Generate the next permutation.
-         int first_Value = current_Permutation[1];
-         current_Permutation[1] = current_Permutation[0];
-         current_Permutation[0] = first_Value;
-         for (int i = 1; ++count[i] > i;){
-            count[i++] = 0;
-            const int new_First_Value = current_Permutation[0] =
-              current_Permutation[1];
-
-            for (int j = 0; ++j < i;)
-               current_Permutation[j] = current_Permutation[j + 1];
-
-            current_Permutation[i] = first_Value;
-            first_Value = new_First_Value;
-         }
+         // next permutation for this block.
+         permutation.advance();
       }
    }
 
-
    // Output the results to stdout.
-   printf("%d\nPfannkuchen(%d) = %d\n", checksum, n,
-     maximum_Flip_Count);
+   cout << checksum << endl;
+   cout << "Pfannkuchen(" << n << ") = " << maxFlips << endl;
 
    return 0;
 }

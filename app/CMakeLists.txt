@@ -53,41 +53,6 @@ add_library( # Sets the name of the library.
 
 #===================================================================
 
-# Specifies libraries CMake should link to your target library. You
-# can link multiple libraries, such as libraries you define in this
-# build script, prebuilt third-party libraries, or system libraries.
-
-#C LIB
-target_link_libraries( # Specifies the target library.
-        bench_c
-
-        PRIVATE
-
-        # Links the target library to the log library
-        # included in the NDK.
-        log gmp apr)
-
-#CPP LIB
-target_link_libraries(
-        bench_cpp
-        PRIVATE
-        log gmp boost_container)
-
-add_library( # Sets the name of the library.
-        urutauappfinal
-
-        # Sets the library as a shared library.
-        SHARED
-
-        # Provides a relative path to your source file(s).
-        src/main/cpp/native-lib.cpp)
-
-# Searches for a specified prebuilt library and stores the path as a
-# variable. Because CMake includes system libraries in the search path by
-# default, you only need to specify the name of the public NDK library
-# you want to add. CMake verifies that the library exists before
-# completing its build.
-
 find_library( # Sets the name of the path variable.
         log-lib
 
@@ -95,13 +60,26 @@ find_library( # Sets the name of the path variable.
         # you want CMake to locate.
         log)
 
+
 # Specifies libraries CMake should link to your target library. You
 # can link multiple libraries, such as libraries you define in this
 # build script, prebuilt third-party libraries, or system libraries.
 
+#C LIB
 target_link_libraries( # Specifies the target library.
-        urutauappfinal
-
+        bench_c
+        PRIVATE
         # Links the target library to the log library
         # included in the NDK.
-        ${log-lib})
+        ${log-lib} gmp apr
+        -fopenmp -static-openmp)
+target_compile_options(bench_c PUBLIC -O3 -fopenmp -fomit-frame-pointer -lgmp)
+
+
+#CPP LIB
+target_link_libraries(
+        bench_cpp
+        PRIVATE
+        ${log-lib} gmp boost_container
+        -fopenmp -static-openmp)
+target_compile_options(bench_cpp PUBLIC -O3 -fopenmp -fomit-frame-pointer -lgmp)
